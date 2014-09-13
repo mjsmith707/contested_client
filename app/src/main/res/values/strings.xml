@@ -4,5 +4,6 @@
     <string name="app_name">Contested</string>
     <string name="vs">vs.</string>
     <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

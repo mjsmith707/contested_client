@@ -5,12 +5,6 @@ package com.edgecase.contested.adapter;
  */
 
 
-import com.edgecase.contested.R;
-import com.edgecase.contested.app.AppController;
-import com.edgecase.contested.model.Contest;
-
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -21,6 +15,11 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.edgecase.contested.R;
+import com.edgecase.contested.app.AppController;
+import com.edgecase.contested.model.Contest;
+
+import java.util.List;
 public class CustomListAdapter extends BaseAdapter {
     private Activity activity = null;
     private LayoutInflater inflater = null;

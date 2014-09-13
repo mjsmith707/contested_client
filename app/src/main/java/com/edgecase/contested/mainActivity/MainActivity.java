@@ -8,8 +8,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ListView;
 import android.view.Menu;
+import android.widget.ListView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -99,6 +99,7 @@ public class MainActivity extends Activity {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(contestReq);
 
+
     }
 
     @Override
@@ -120,5 +121,7 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+
 
 }
