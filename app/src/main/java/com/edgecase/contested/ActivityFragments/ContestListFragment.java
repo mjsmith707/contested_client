@@ -1,14 +1,16 @@
-package com.edgecase.contested.mainActivity;
+package com.edgecase.contested.ActivityFragments;
 
 /**
  * Created by reubenromandy on 9/3/14.
  */
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Menu;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.android.volley.Response;
@@ -30,9 +32,9 @@ import java.util.List;
 
 
 
-public class MainActivity extends Activity {
+public class ContestListFragment extends Fragment {
     // Log tag
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = ContestListFragment.class.getSimpleName();
 
     // Contests json url
     private static final String url = "http://10.0.2.2:3000/contests";
@@ -42,15 +44,17 @@ public class MainActivity extends Activity {
     private CustomListAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        listView = (ListView) findViewById(R.id.ContestListView);
-        adapter = new CustomListAdapter(this, contestList);
+        View rootView = inflater.inflate(R.layout.fragment_contest_list, container, false);
+
+
+        listView = (ListView) rootView.findViewById(R.id.ContestListView);
+        adapter = new CustomListAdapter(getActivity(), contestList);
         listView.setAdapter(adapter);
 
-        pDialog = new ProgressDialog(this);
+        pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
         pDialog.setMessage("Loading...");
         pDialog.show();
@@ -98,7 +102,7 @@ public class MainActivity extends Activity {
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(contestReq);
-
+    return rootView;
 
     }
 
@@ -115,12 +119,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+
 
 
 

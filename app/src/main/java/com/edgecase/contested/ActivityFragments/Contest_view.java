@@ -1,13 +1,14 @@
-package com.edgecase.contested;
+package com.edgecase.contested.ActivityFragments;
 
 
-
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.edgecase.contested.R;
 
 
 /**
@@ -19,10 +20,10 @@ import android.widget.TextView;
  * by swiping.
  *
  */
-public class contest_view extends Fragment {
+public class Contest_view extends Fragment {
     int mCurrentPage;
 
-    public contest_view() {
+    public Contest_view() {
         // Required empty public constructor
     }
 
