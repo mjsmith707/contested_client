@@ -113,32 +113,7 @@ public class UserFunctions {
         JSONObject json = jsonParser.getJSONFromUrl(registerURL,params);
         return json;
     }
-    /**
-     * Function to  Register
-     **/
-    public JSONObject getContestList(String uname, String pass){
-        // Building Parameters
-        JSONObject params = new JSONObject();
 
-        try {
-            params.put("username", uname);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            params.put("password", pass);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            params.put("requestid", "getmycontests");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JSONObject json = jsonParser.getJSONFromUrl(registerURL,params);
-        return json;
-    }
     /**
      * Function to logout user
      * Resets the temporary data stored in SQLite Database

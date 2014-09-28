@@ -5,6 +5,7 @@ package com.edgecase.contested.ActivityFragments;
  */
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,7 +17,7 @@ import android.widget.ListView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.edgecase.contested.R;
 import com.edgecase.contested.adapter.CustomListAdapter;
 import com.edgecase.contested.app.AppController;
@@ -29,7 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 
 public class ContestListFragment extends Fragment {
@@ -37,11 +38,13 @@ public class ContestListFragment extends Fragment {
     private static final String TAG = ContestListFragment.class.getSimpleName();
 
     // Contests json url
-    private static final String url = "http://10.0.2.2:3000/myContests";
+    private static final String url = "http://24.130.89.93:1234/";
     private ProgressDialog pDialog;
     private List<Contest> contestList = new ArrayList<Contest>();
     private ListView listView;
     private CustomListAdapter adapter;
+    private String uname;
+    private String pass;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,17 +63,51 @@ public class ContestListFragment extends Fragment {
         pDialog.show();
 
         // Creating volley request obj
-        JsonArrayRequest contestReq = new JsonArrayRequest(url,
-                new Response.Listener<JSONArray>() {
+        SharedPreferences prefs = getDefaultSharedPreferences(getActivity().getApplicationContext());
+        pass = prefs.getString("password", "");
+        uname = prefs.getString("username", "");
+
+        JSONObject params = new JSONObject();
+
+        try {
+            params.put("username", uname);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            params.put("password", pass);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            params.put("requestid", "getmycontests");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        JsonObjectRequest contestReq = new JsonObjectRequest(url, params,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
                         hidePDialog();
-                        // Parsing json
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
 
-                                JSONObject obj = response.getJSONObject(i);
+
+                        try {
+                            JSONArray result = new JSONArray();
+                            result = response.getJSONArray("contests");
+
+
+
+
+                        // Parsing json
+                        for (int i = 0; i < result.length(); i++) {
+
+
+                                JSONObject obj = result.getJSONObject(i);
                                 Contest contest = new Contest();
                                 contest.setContestName(obj.getString("contestName"));
                                 contest.setThumbnailUrl(obj.getString("image1"));
@@ -81,12 +118,12 @@ public class ContestListFragment extends Fragment {
 // adding contests to contest array
                                 contestList.add(contest);
 
-
+                            }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 
-                        }
+
 
                         // notifying list adapter about data changes
                         // so that it renders the list view with updated data

@@ -43,19 +43,19 @@ public class Contest {
         this.userTwo = userTwo;
     }
 
-    public String getThumbnailUrl() {
+    public String getThumbnail() {
         return thumbnailUrl;
     }
 
-    public void setThumbnailUrl(String thumbnailUrl) {
+    public void setThumbnail(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
     }
 
-    public String getThumbnailUrlTwo() {
+    public String getThumbnailTwo() {
         return thumbnailUrlTwo;
     }
 
-    public void setThumbnailUrlTwo(String thumbnailUrlTwo) {
+    public void setThumbnailTwo(String thumbnailUrlTwo) {
         this.thumbnailUrlTwo = thumbnailUrlTwo;
     }
 }

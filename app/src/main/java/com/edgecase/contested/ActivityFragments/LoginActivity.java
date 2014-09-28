@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -23,6 +24,9 @@ import com.edgecase.contested.library.UserFunctions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+
 public class LoginActivity extends Activity {
     Button btnLogin;
     Button Btnregister;
@@ -30,6 +34,9 @@ public class LoginActivity extends Activity {
     EditText inputUser;
     EditText inputPassword;
     private TextView loginErrorMsg;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    SharedPreferences sharedpreferences;
+
     /**
      * Called when the activity is first created.
      */
@@ -113,6 +120,13 @@ private class ProcessLogin extends AsyncTask <String, Void , JSONObject>{
         inputPassword = (EditText) findViewById(R.id.pword);
         user = inputUser.getText().toString();
         password = inputPassword.getText().toString();
+
+        SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("Username", user);
+        editor.putString("Password", password);
+        editor.commit();
+
         pDialog = new ProgressDialog(LoginActivity.this);
         pDialog.setTitle("Contacting Servers");
         pDialog.setMessage("Logging in ...");
