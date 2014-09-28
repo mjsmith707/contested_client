@@ -12,5 +12,6 @@
     <string name="forgotpass">Forgot Password</string>
     <string name="RegisterHeader">Register Contested</string>
     <string name="fName">First Name</string>
+    <string name="userName">User Name</string>
 
 </resources>

@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edgecase.contested.R;
-import com.edgecase.contested.library.DatabaseHandler;
 import com.edgecase.contested.library.UserFunctions;
 
 import org.json.JSONException;
@@ -28,7 +27,7 @@ public class RegisterActivity extends Activity {
     /**
      *  JSON Response node names.
      **/
-    private static String KEY_SUCCESS = "success";
+    //private static String RESULT = "success";
     private static String KEY_UID = "uid";
     private static String KEY_FIRSTNAME = "fname";
     private static String KEY_LASTNAME = "lname";
@@ -59,7 +58,7 @@ public class RegisterActivity extends Activity {
         inputFirstName = (EditText) findViewById(R.id.fname);
         inputLastName = (EditText) findViewById(R.id.lname);
         inputUsername = (EditText) findViewById(R.id.uname);
-        inputEmail = (EditText) findViewById(R.id.email);
+        inputEmail = (EditText) findViewById(R.id.username);
         inputPassword = (EditText) findViewById(R.id.pword);
         btnRegister = (Button) findViewById(R.id.register);
         registerErrorMsg = (TextView) findViewById(R.id.register_error);
@@ -122,8 +121,8 @@ public class RegisterActivity extends Activity {
             super.onPreExecute();
             inputUsername = (EditText) findViewById(R.id.uname);
             inputPassword = (EditText) findViewById(R.id.pword);
-            fname = inputFirstName.getText().toString();
-            lname = inputLastName.getText().toString();
+           // fname = inputFirstName.getText().toString();
+           // lname = inputLastName.getText().toString();
             email = inputEmail.getText().toString();
             uname= inputUsername.getText().toString();
             password = inputPassword.getText().toString();
@@ -137,7 +136,7 @@ public class RegisterActivity extends Activity {
         @Override
         protected JSONObject doInBackground(String... args) {
             UserFunctions userFunction = new UserFunctions();
-            JSONObject json = userFunction.registerUser(fname, lname, email, uname, password);
+            JSONObject json = userFunction.registerUser(/*fname, lname, */email, uname, password);
             return json;
         }
         @Override
@@ -146,22 +145,22 @@ public class RegisterActivity extends Activity {
              * Checks for success message.
              **/
             try {
-                if (json.getString(KEY_SUCCESS) != null) {
+                if (json.getString("RESULT") != null) {
                     registerErrorMsg.setText("");
-                    String res = json.getString(KEY_SUCCESS);
-                    String red = json.getString(KEY_ERROR);
-                    if(Integer.parseInt(res) == 1){
+                    String res = json.getString("RESULT");
+                   // String red = json.getString(KEY_ERROR);
+                    if(Integer.parseInt(res) == 1005){
                         pDialog.setTitle("Getting Data");
                         pDialog.setMessage("Loading Info");
                         registerErrorMsg.setText("Successfully Registered");
-                        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-                        JSONObject json_user = json.getJSONObject("user");
+                       // DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+                       // JSONObject json_user = json.getJSONObject("user");
                         /**
                          * Removes all the previous data in the SQlite database
                          **/
-                        UserFunctions logout = new UserFunctions();
-                        logout.logoutUser(getApplicationContext());
-                        db.addUser(json_user.getString(KEY_FIRSTNAME),json_user.getString(KEY_LASTNAME),json_user.getString(KEY_EMAIL),json_user.getString(KEY_USERNAME),json_user.getString(KEY_UID),json_user.getString(KEY_CREATED_AT));
+                       // UserFunctions logout = new UserFunctions();
+                     //   logout.logoutUser(getApplicationContext());
+                      //  db.addUser(json_user.getString(KEY_FIRSTNAME),json_user.getString(KEY_LASTNAME),json_user.getString(KEY_EMAIL),json_user.getString(KEY_USERNAME),json_user.getString(KEY_UID),json_user.getString(KEY_CREATED_AT));
                         /**
                          * Stores registered data in SQlite Database
                          * Launch Registered screen
@@ -175,11 +174,11 @@ public class RegisterActivity extends Activity {
                         startActivity(login);
                         finish();
                     }
-                    else if (Integer.parseInt(red) ==2){
+                    else if (Integer.parseInt(res) ==1006){
                         pDialog.dismiss();
                         registerErrorMsg.setText("User already exists");
                     }
-                    else if (Integer.parseInt(red) ==3){
+                    else if (Integer.parseInt(res) ==1003){
                         pDialog.dismiss();
                         registerErrorMsg.setText("Invalid Email id");
                     }

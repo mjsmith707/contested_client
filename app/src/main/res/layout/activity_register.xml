@@ -70,7 +70,7 @@
         android:textColor="#000000"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/email"
+        android:id="@+id/username"
         android:hint="E-mail"
         android:layout_below="@+id/lname"
         android:layout_alignParentRight="true"
