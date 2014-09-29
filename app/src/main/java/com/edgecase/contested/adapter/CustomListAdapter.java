@@ -77,8 +77,8 @@ public class CustomListAdapter extends BaseAdapter {
 
         //thumbnail image two
         byte[] decodedString2 = Base64.decode(c.getThumbnailTwo(), Base64.DEFAULT);
-        Bitmap imageFromDecodedByte2 = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        thumbNailTwo.setImageBitmap(imageFromDecodedByte);
+        Bitmap imageFromDecodedByte2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+        thumbNailTwo.setImageBitmap(imageFromDecodedByte2);
 
         // contest name
         contestName.setText(c.getContestName());

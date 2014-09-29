@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -30,8 +31,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.preference.PreferenceManager.getDefaultSharedPreferences;
-
 
 public class ContestListFragment extends Fragment {
     // Log tag
@@ -45,6 +44,8 @@ public class ContestListFragment extends Fragment {
     private CustomListAdapter adapter;
     private String uname;
     private String pass;
+    public static final String MYPREFS = "mySharedPreferences";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,17 +64,17 @@ public class ContestListFragment extends Fragment {
         pDialog.show();
 
         // Creating volley request obj
-        SharedPreferences prefs = getDefaultSharedPreferences(getActivity().getApplicationContext());
-        pass = prefs.getString("password", "");
-        uname = prefs.getString("username", "");
+        SharedPreferences prefs = this.getActivity().getSharedPreferences(MYPREFS, getActivity().MODE_PRIVATE);
+        pass = prefs.getString("Password", "not working");
+        uname = prefs.getString("Username", "not working");
+
+        Toast.makeText(getActivity().getApplicationContext(),
+              uname, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity().getApplicationContext(),
+              pass, Toast.LENGTH_LONG).show();
+
 
         JSONObject params = new JSONObject();
-
-        try {
-            params.put("username", uname);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
         try {
             params.put("password", pass);
         } catch (JSONException e) {
@@ -84,7 +85,11 @@ public class ContestListFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        try {
+            params.put("username", uname);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
 
@@ -110,8 +115,8 @@ public class ContestListFragment extends Fragment {
                                 JSONObject obj = result.getJSONObject(i);
                                 Contest contest = new Contest();
                                 contest.setContestName(obj.getString("contestName"));
-                                contest.setThumbnailUrl(obj.getString("image1"));
-                                contest.setThumbnailUrlTwo(obj.getString("image2"));
+                                contest.setThumbnail(obj.getString("image1"));
+                                contest.setThumbnailTwo(obj.getString("image2"));
                                 contest.setUserOne(obj.getString("userOne"));
                                 contest.setUserTwo(obj.getString("userTwo"));
 
@@ -155,9 +160,4 @@ public class ContestListFragment extends Fragment {
             pDialog = null;
         }
     }
-
-
-
-
-
 }

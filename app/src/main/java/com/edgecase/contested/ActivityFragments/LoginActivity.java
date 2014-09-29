@@ -25,7 +25,7 @@ import com.edgecase.contested.library.UserFunctions;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+
 
 public class LoginActivity extends Activity {
     Button btnLogin;
@@ -34,9 +34,7 @@ public class LoginActivity extends Activity {
     EditText inputUser;
     EditText inputPassword;
     private TextView loginErrorMsg;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-
+    public static final String MYPREFS = "mySharedPreferences";
     /**
      * Called when the activity is first created.
      */
@@ -121,11 +119,13 @@ private class ProcessLogin extends AsyncTask <String, Void , JSONObject>{
         user = inputUser.getText().toString();
         password = inputPassword.getText().toString();
 
-        SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences prefs = getSharedPreferences(MYPREFS,MODE_PRIVATE );
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("Username", user);
         editor.putString("Password", password);
-        editor.commit();
+        editor.apply();
+
+
 
         pDialog = new ProgressDialog(LoginActivity.this);
         pDialog.setTitle("Contacting Servers");

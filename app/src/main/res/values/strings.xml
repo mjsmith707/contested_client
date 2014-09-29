@@ -13,5 +13,7 @@
     <string name="RegisterHeader">Register Contested</string>
     <string name="fName">First Name</string>
     <string name="userName">User Name</string>
+    <string name="NewContestHeader">New Contest</string>
+    <string name="Opponent">choose opponent</string>
 
 </resources>
