@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -67,11 +66,6 @@ public class ContestListFragment extends Fragment {
         SharedPreferences prefs = this.getActivity().getSharedPreferences(MYPREFS, getActivity().MODE_PRIVATE);
         pass = prefs.getString("Password", "not working");
         uname = prefs.getString("Username", "not working");
-
-        Toast.makeText(getActivity().getApplicationContext(),
-              uname, Toast.LENGTH_LONG).show();
-        Toast.makeText(getActivity().getApplicationContext(),
-              pass, Toast.LENGTH_LONG).show();
 
 
         JSONObject params = new JSONObject();
