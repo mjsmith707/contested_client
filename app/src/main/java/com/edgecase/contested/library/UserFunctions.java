@@ -6,22 +6,15 @@ package com.edgecase.contested.library;
 
 import android.content.Context;
 
-import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 public class UserFunctions {
     private JSONParser jsonParser;
     //URL of the contested API
-    private static String loginURL = "http://10.0.2.2:80/~reubenromandy/";
-    private static String registerURL = "http://10.0.2.2:80/~reubenromandy/";
-    private static String forpassURL = "http://10.0.2.2:80/";
-    private static String chgpassURL = "http://10.0.2.2:80/";
-    private static String login_tag = "login";
-    private static String register_tag = "register";
-    private static String forpass_tag = "forpass";
-    private static String chgpass_tag = "chgpass";
+    private static String loginURL = "http://24.130.89.93:1234/";
+    private static String registerURL = "http://24.130.89.93:1234/";
+
+
     // constructor
     public UserFunctions(){
         jsonParser = new JSONParser();
@@ -29,12 +22,29 @@ public class UserFunctions {
     /**
      * Function to Login
      **/
-    public JSONObject loginUser(String email, String password){
+    public JSONObject loginUser(String user, String password){
         // Building Parameters
-        List params = new ArrayList();
-        params.add(new BasicNameValuePair("tag", login_tag));
-        params.add(new BasicNameValuePair("email", email));
-        params.add(new BasicNameValuePair("password", password));
+        JSONObject params = new JSONObject();
+       /* try {
+            params.put("tag", login_tag);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
+        try {
+            params.put("username", user);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            params.put("password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            params.put("requestid", "authenticate");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
         return json;
     }
@@ -42,38 +52,68 @@ public class UserFunctions {
      * Function to change password
      **/
     public JSONObject chgPass(String newpas, String email){
-        List params = new ArrayList();
-        params.add(new BasicNameValuePair("tag", chgpass_tag));
-        params.add(new BasicNameValuePair("newpas", newpas));
-        params.add(new BasicNameValuePair("email", email));
-        JSONObject json = jsonParser.getJSONFromUrl(chgpassURL, params);
+        JSONObject params = new JSONObject();
+
+
+        try {
+            params.put("newpas", newpas);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            params.put("email", email);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
         return json;
     }
     /**
      * Function to reset the password
      **/
     public JSONObject forPass(String forgotpassword){
-        List params = new ArrayList();
-        params.add(new BasicNameValuePair("tag", forpass_tag));
-        params.add(new BasicNameValuePair("forgotpassword", forgotpassword));
-        JSONObject json = jsonParser.getJSONFromUrl(forpassURL, params);
+        JSONObject params = new JSONObject();
+
+        try {
+            params.put("forgotpassword", forgotpassword);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
         return json;
     }
     /**
      * Function to  Register
      **/
-    public JSONObject registerUser(String fname, String lname, String email, String uname, String password){
+    public JSONObject registerUser(/*String fname, String lname,*/ String email, String uname, String password){
         // Building Parameters
-        List params = new ArrayList();
-        params.add(new BasicNameValuePair("tag", register_tag));
-        params.add(new BasicNameValuePair("fname", fname));
-        params.add(new BasicNameValuePair("lname", lname));
-        params.add(new BasicNameValuePair("email", email));
-        params.add(new BasicNameValuePair("uname", uname));
-        params.add(new BasicNameValuePair("password", password));
+        JSONObject params = new JSONObject();
+        //params.add(new BasicNameValuePair("fname", fname));
+       // params.add(new BasicNameValuePair("lname", lname));
+        try {
+            params.put("username", uname);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            params.put("password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            params.put("requestid", "createuser");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            params.put("reqparam1", email);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         JSONObject json = jsonParser.getJSONFromUrl(registerURL,params);
         return json;
     }
+
     /**
      * Function to logout user
      * Resets the temporary data stored in SQLite Database

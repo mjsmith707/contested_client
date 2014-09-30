@@ -7,14 +7,17 @@ package com.edgecase.contested.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 import com.edgecase.contested.R;
 import com.edgecase.contested.app.AppController;
 import com.edgecase.contested.model.Contest;
@@ -58,10 +61,8 @@ public class CustomListAdapter extends BaseAdapter {
 
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
-        NetworkImageView thumbNail = (NetworkImageView) convertView
-                .findViewById(R.id.thumbUserOne);
-        NetworkImageView thumbNailTwo = (NetworkImageView) convertView
-                .findViewById(R.id.thumbUserTwo);
+        ImageView thumbNail = (ImageView) convertView.findViewById(R.id.thumbUserOne);
+        ImageView thumbNailTwo = (ImageView) convertView.findViewById(R.id.thumbUserTwo);
         TextView contestName = (TextView) convertView.findViewById(R.id.contestName);
         TextView userOne = (TextView) convertView.findViewById(R.id.userOne);
         TextView userTwo = (TextView) convertView.findViewById(R.id.userTwo);
@@ -70,10 +71,14 @@ public class CustomListAdapter extends BaseAdapter {
         Contest c = contestItems.get(position);
 
         // thumbnail image
-        thumbNail.setImageUrl(c.getThumbnailUrl(), imageLoader);
+        byte[] decodedString = Base64.decode(c.getThumbnail(), Base64.DEFAULT);
+        Bitmap imageFromDecodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        thumbNail.setImageBitmap(imageFromDecodedByte);
 
         //thumbnail image two
-        thumbNailTwo.setImageUrl(c.getThumbnailUrlTwo(), imageLoader);
+        byte[] decodedString2 = Base64.decode(c.getThumbnailTwo(), Base64.DEFAULT);
+        Bitmap imageFromDecodedByte2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+        thumbNailTwo.setImageBitmap(imageFromDecodedByte2);
 
         // contest name
         contestName.setText(c.getContestName());
