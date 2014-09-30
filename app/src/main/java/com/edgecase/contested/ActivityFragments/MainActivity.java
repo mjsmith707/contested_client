@@ -22,6 +22,8 @@ public class MainActivity extends FragmentActivity implements
     private ActionBar actionBar;
     // Tab titles
     private String[] tabs = { "My Contests", "Friends", "New Contest", "Top Contests" };
+    ContestListFragment contestListFragment;
+    Contest_view contest_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,15 @@ public class MainActivity extends FragmentActivity implements
 
     @Override
     public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+    }
+
+    public void onDetailViewUpdate( int position){
+        contest_view = new Contest_view();
+        //set contest view attributes here
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.layout.activity_main, contest_view)
+                .addToBackStack("contestback")
+                .commit();
     }
 
 }

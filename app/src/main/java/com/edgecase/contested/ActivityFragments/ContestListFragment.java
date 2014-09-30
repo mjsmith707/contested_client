@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Response;
@@ -32,7 +33,7 @@ import java.util.List;
 
 
 
-public class ContestListFragment extends Fragment {
+public class ContestListFragment extends Fragment implements AdapterView.OnItemClickListener {
     // Log tag
     private static final String TAG = ContestListFragment.class.getSimpleName();
 
@@ -42,6 +43,8 @@ public class ContestListFragment extends Fragment {
     private List<Contest> contestList = new ArrayList<Contest>();
     private ListView listView;
     private CustomListAdapter adapter;
+    OnDetailView mListener;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -119,8 +122,12 @@ public class ContestListFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        mListener.onDetailViewUpdate(position);
+    }
 
-
-
-
+    public interface OnDetailView {
+        public void onDetailViewUpdate(int position);
+    }
 }

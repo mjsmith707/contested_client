@@ -1,9 +1,16 @@
 package com.edgecase.contested.adapter;
 
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
+
+import com.edgecase.contested.ActivityFragments.Contest_view;
+
 /**
  * page adapter for contest view.
- *
+ */
 
 public class Contest_view_page_adapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 2;
@@ -30,4 +37,3 @@ public class Contest_view_page_adapter extends FragmentPagerAdapter {
 
 
 }
- */

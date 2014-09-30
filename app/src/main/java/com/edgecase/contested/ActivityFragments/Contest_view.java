@@ -1,12 +1,15 @@
 package com.edgecase.contested.ActivityFragments;
 
 
-import android.app.Fragment;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.edgecase.contested.R;
 
@@ -22,6 +25,7 @@ import com.edgecase.contested.R;
  */
 public class Contest_view extends Fragment {
     int mCurrentPage;
+    private Bitmap entry;
 
     public Contest_view() {
         // Required empty public constructor
@@ -37,11 +41,25 @@ public class Contest_view extends Fragment {
         mCurrentPage = data.getInt("current_page", 0);
     }
 
+    public void setEntry(Bitmap imageBitmap)
+    {
+        this.entry = imageBitmap;
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.contest_view_fragment, container, false);
         TextView name = (TextView) v.findViewById(R.id.contestName);
         name.setText("contest name, entry" + mCurrentPage );
+        ImageButton thisEntry = (ImageButton) v.findViewById(R.id.entry);
+        thisEntry.setImageBitmap(entry);
+        thisEntry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "Vote cast!", Toast.LENGTH_SHORT).show();
+            }
+        });
         return v;
     }
 
