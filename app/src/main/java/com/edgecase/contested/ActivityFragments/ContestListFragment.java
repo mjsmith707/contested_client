@@ -36,7 +36,7 @@ public class ContestListFragment extends Fragment {
     private static final String TAG = ContestListFragment.class.getSimpleName();
 
     // Contests json url
-    private static final String url = "http://24.130.89.93:1234/";
+    private static final String url = "http://contested.grantkeller.org:1234/";
     private ProgressDialog pDialog;
     private List<Contest> contestList = new ArrayList<Contest>();
     private ListView listView;
