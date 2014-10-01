@@ -11,8 +11,8 @@ import org.json.JSONObject;
 public class UserFunctions {
     private JSONParser jsonParser;
     //URL of the contested API
-    private static String loginURL = "http://24.130.89.93:1234/";
-    private static String registerURL = "http://24.130.89.93:1234/";
+    private static String loginURL = "http://contested.grantkeller.org:1234/";
+    private static String registerURL = "http://contested.grantkeller.org:1234/";
 
 
     // constructor
