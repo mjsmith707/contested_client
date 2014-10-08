@@ -1,22 +1,32 @@
 package com.edgecase.contested.model;
 
+import android.util.Log;
+
 public class Contest {
     private String contestName;
     private String userOne;
     private String userTwo;
     private String thumbnailUrl;
     private String thumbnailUrlTwo;
+    private String contestID;
 
 
     public Contest() {
+        Log.w("Contest", "Empty constructor called");
     }
 
-    public Contest(String contestName, String thumbnailUrl, String thumbnailUrlTwo, String userOne, String userTwo) {
+
+    public Contest(String contestName, String thumbnailUrl, String thumbnailUrlTwo, String userOne, String userTwo, String contestID) {
         this.contestName = contestName;
         this.thumbnailUrl = thumbnailUrl;
         this.thumbnailUrlTwo = thumbnailUrlTwo;
         this.userOne = userOne;
         this.userTwo = userTwo;
+        this.contestID = contestID;
+    }
+
+    public Contest (Contest contest){
+
     }
 
     public String getContestName() {
@@ -26,6 +36,10 @@ public class Contest {
     public void setContestName(String contestName) {
         this.contestName = contestName;
     }
+
+    public String getContestID() { return contestID; }
+
+    public void setContestID(String contestID){ this.contestID = contestID;}
 
     public String getUserOne() {
         return userOne;
