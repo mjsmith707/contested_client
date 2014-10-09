@@ -82,6 +82,7 @@ public class MainActivity extends FragmentActivity implements
     public void onTabUnselected(Tab tab, FragmentTransaction ft) {
     }
 
+
     public void onDetailViewUpdate( Contest contest){
          Intent intent = new Intent(this, ContestViewPagerContainer.class);
          intent.putExtra("CONTESTID", contest.getContestID());
