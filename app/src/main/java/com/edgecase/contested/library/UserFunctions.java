@@ -5,19 +5,21 @@ package com.edgecase.contested.library;
  */
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 public class UserFunctions {
     private JSONParser jsonParser;
     //URL of the contested API
-    private static String loginURL = "http://contested.grantkeller.org:1234/";
-    private static String registerURL = "http://contested.grantkeller.org:1234/";
-
+    private static String URL = "http://contested.grantkeller.org:1234/";
+    private static String TAG;
 
     // constructor
-    public UserFunctions(){
-        jsonParser = new JSONParser();
+    public UserFunctions(String Tag){
+        TAG = Tag;
+        Log.e(TAG, "in");
+        jsonParser = new JSONParser(TAG);
     }
     /**
      * Function to Login
@@ -25,6 +27,7 @@ public class UserFunctions {
     public JSONObject loginUser(String user, String password){
         // Building Parameters
         JSONObject params = new JSONObject();
+        Log.e(TAG, "in further");
        /* try {
             params.put("tag", login_tag);
         } catch (JSONException e) {
@@ -45,7 +48,7 @@ public class UserFunctions {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
+        JSONObject json = jsonParser.getJSONFromUrl(URL, params);
         return json;
     }
     /**
@@ -65,7 +68,7 @@ public class UserFunctions {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
+        JSONObject json = jsonParser.getJSONFromUrl(URL, params);
         return json;
     }
     /**
@@ -79,7 +82,7 @@ public class UserFunctions {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
+        JSONObject json = jsonParser.getJSONFromUrl(URL, params);
         return json;
     }
     /**
@@ -88,8 +91,6 @@ public class UserFunctions {
     public JSONObject registerUser(/*String fname, String lname,*/ String email, String uname, String password){
         // Building Parameters
         JSONObject params = new JSONObject();
-        //params.add(new BasicNameValuePair("fname", fname));
-       // params.add(new BasicNameValuePair("lname", lname));
         try {
             params.put("username", uname);
         } catch (JSONException e) {
@@ -110,7 +111,39 @@ public class UserFunctions {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JSONObject json = jsonParser.getJSONFromUrl(registerURL,params);
+        JSONObject json = jsonParser.getJSONFromUrl(URL,params);
+        return json;
+    }
+
+    public JSONObject createContest(String uname, String pass, String contestNameString, String contestType){
+
+   JSONObject params = new JSONObject();
+    try {
+        params.put("password", pass);
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+    try {
+        params.put("username", uname);
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+    try {
+        params.put("requestid", "createcontest");
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+    try {
+        params.put("reqparam1", contestNameString);
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+    try {
+        params.put("reqparam2", "contestType");
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+        JSONObject json = jsonParser.getJSONFromUrl(URL,params);
         return json;
     }
 

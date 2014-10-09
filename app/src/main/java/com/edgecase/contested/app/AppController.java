@@ -20,6 +20,7 @@ public class AppController extends Application {
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
+    private String url = "http://contested.grantkeller.org:1234/";
 
     private static AppController mInstance;
 
@@ -28,7 +29,9 @@ public class AppController extends Application {
         super.onCreate();
         mInstance = this;
     }
-
+    public String getUrl(){
+        return url;
+    }
     public static synchronized AppController getInstance() {
         return mInstance;
     }

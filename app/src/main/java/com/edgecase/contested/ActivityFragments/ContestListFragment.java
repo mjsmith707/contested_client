@@ -41,7 +41,7 @@ public class ContestListFragment extends Fragment implements AdapterView.OnItemC
     private static final String TAG = ContestListFragment.class.getSimpleName();
 
     // Contests json url
-    private static final String url = "http://contested.grantkeller.org:1234/";
+    private String url = AppController.getInstance().getUrl();
     private ProgressDialog pDialog;
     private List<Contest> contestList = new ArrayList<Contest>();
     private ListView listView;

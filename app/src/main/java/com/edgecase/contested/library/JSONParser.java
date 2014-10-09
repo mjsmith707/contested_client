@@ -6,29 +6,23 @@ package com.edgecase.contested.library;
 
 import android.util.Log;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.edgecase.contested.app.AppController;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import org.json.JSONObject;
 public class JSONParser {
-    static InputStream is = null;
     static JSONObject jObj = null;
-    static String json = "";
+    static String TAG;
     // constructor
-    public JSONParser() {
+    public JSONParser(String Tag) {
+        TAG = Tag;
+        Log.e(Tag, "In Parser");
     }
     public JSONObject getJSONFromUrl(String url, JSONObject params) {
-        // Making HTTP request
+       /* // Making HTTP request
         try {
             // defaultHttpClient
             DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -65,7 +59,25 @@ public class JSONParser {
             jObj = new JSONObject(json);
         } catch (JSONException e) {
             Log.e("JSON Parser", "Error parsing data " + e.toString());
-        }
+        }*/
+
+        JsonObjectRequest contestCreateReq = new JsonObjectRequest(url, params,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+                        jObj = response;
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(contestCreateReq);
+
         // return JSON String
         return jObj;
     }

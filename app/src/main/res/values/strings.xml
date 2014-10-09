@@ -17,5 +17,6 @@
     <string name="Opponent">choose opponent</string>
     <string name="title_activity_contest_view">ContestView</string>
     <string name="hello_world">Hello world!</string>
+    <string name="opponentName">Opponent name</string>
 
 </resources>
