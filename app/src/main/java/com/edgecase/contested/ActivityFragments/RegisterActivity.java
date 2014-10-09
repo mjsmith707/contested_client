@@ -139,18 +139,7 @@ public class RegisterActivity extends Activity {
                                                         pDialog.setTitle("Getting Data");
                                                         pDialog.setMessage("Loading Info");
                                                         registerErrorMsg.setText("Successfully Registered");
-                                                        // DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-                                                        // JSONObject json_user = json.getJSONObject("user");
-                                                        /**
-                                                         * Removes all the previous data in the SQlite database
-                                                         **/
-                                                        // UserFunctions logout = new UserFunctions();
-                                                        //   logout.logoutUser(getApplicationContext());
-                                                        //  db.addUser(json_user.getString(KEY_FIRSTNAME),json_user.getString(KEY_LASTNAME),json_user.getString(KEY_EMAIL),json_user.getString(KEY_USERNAME),json_user.getString(KEY_UID),json_user.getString(KEY_CREATED_AT));
-                                                        /**
-                                                         * Stores registered data in SQlite Database
-                                                         * Launch Registered screen
-                                                         **/
+
                                                         Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                                                         /**
                                                          * Close all views before launching Registered screen

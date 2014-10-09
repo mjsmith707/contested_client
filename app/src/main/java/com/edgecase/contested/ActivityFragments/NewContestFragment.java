@@ -140,8 +140,7 @@ public class NewContestFragment extends Fragment {
                     e.printStackTrace();
                 }
                 try {
-                    params.put("reqparam2", contestTypeID.toString());
-                    Log.e("reqparam2", contestTypeID.toString());
+                    params.put("reqparam2", contestTypeID);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -174,7 +173,7 @@ public class NewContestFragment extends Fragment {
                 AppController.getInstance().addToRequestQueue(contestCreateReq);
 
             }
-            ContestListFragment clf = new ContestListFragment();
+            ContestFragment cf = new ContestFragment();
            final FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
 
         });
