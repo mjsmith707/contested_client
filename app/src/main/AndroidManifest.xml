@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.edgecase.contested" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-sdk
-        android:targetSdkVersion="18" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-sdk android:targetSdkVersion="18" />
+
     <application
         android:name=".app.AppController"
         android:allowBackup="true"
@@ -21,9 +22,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="@string/app_name" android:name=".ActivityFragments.MainActivity">
+        <activity
+            android:name=".ActivityFragments.MainActivity"
+            android:label="@string/app_name" >
         </activity>
-        <activity android:label="@string/app_name" android:name=".ActivityFragments.RegisterActivity">
+        <activity
+            android:name=".ActivityFragments.RegisterActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".ActivityFragments.ContestViewPagerContainer"
+            android:label="@string/title_activity_contest_view" >
         </activity>
     </application>
 

@@ -4,7 +4,9 @@ package com.edgecase.contested.ActivityFragments;
  * Created by reubenromandy on 9/3/14.
  */
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Response;
@@ -31,7 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ContestListFragment extends Fragment {
+
+
+public class ContestListFragment extends Fragment implements AdapterView.OnItemClickListener {
     // Log tag
     private static final String TAG = ContestListFragment.class.getSimpleName();
 
@@ -41,10 +46,25 @@ public class ContestListFragment extends Fragment {
     private List<Contest> contestList = new ArrayList<Contest>();
     private ListView listView;
     private CustomListAdapter adapter;
+    OnDetailView mListener;
+    Context context;
     private String uname;
     private String pass;
+    private String contestID;
     public static final String MYPREFS = "mySharedPreferences";
 
+    @Override
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+        context = activity;
+        if (activity instanceof OnDetailView)
+        {
+            mListener = (OnDetailView) activity;
+        } else {
+            throw new  ClassCastException(activity.toString());
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +76,7 @@ public class ContestListFragment extends Fragment {
         listView = (ListView) rootView.findViewById(R.id.ContestListView);
         adapter = new CustomListAdapter(getActivity(), contestList);
         listView.setAdapter(adapter);
-
+        listView.setOnItemClickListener(this);
         pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
         pDialog.setMessage("Loading...");
@@ -113,6 +133,7 @@ public class ContestListFragment extends Fragment {
                                 contest.setThumbnailTwo(obj.getString("image2"));
                                 contest.setUserOne(obj.getString("userOne"));
                                 contest.setUserTwo(obj.getString("userTwo"));
+                                contest.setContestID(obj.getString("contestID"));
 
 // adding contests to contest array
                                 contestList.add(contest);
@@ -121,7 +142,6 @@ public class ContestListFragment extends Fragment {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
 
 
                         // notifying list adapter about data changes
@@ -153,5 +173,15 @@ public class ContestListFragment extends Fragment {
             pDialog.dismiss();
             pDialog = null;
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        Log.w("contested", "on click listener launched");
+        mListener.onDetailViewUpdate(contestList.get(position));
+    }
+
+    public interface OnDetailView {
+        public void onDetailViewUpdate(Contest contest);
     }
 }

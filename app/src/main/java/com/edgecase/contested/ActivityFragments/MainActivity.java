@@ -7,15 +7,17 @@ package com.edgecase.contested.ActivityFragments;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
 import com.edgecase.contested.R;
 import com.edgecase.contested.adapter.TabsPagerAdapter;
+import com.edgecase.contested.model.Contest;
 
 public class MainActivity extends FragmentActivity implements
-        ActionBar.TabListener {
+        ActionBar.TabListener, ContestListFragment.OnDetailView{
 
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
@@ -78,6 +80,15 @@ public class MainActivity extends FragmentActivity implements
 
     @Override
     public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+    }
+
+    public void onDetailViewUpdate( Contest contest){
+         Intent intent = new Intent(this, ContestViewPagerContainer.class);
+         intent.putExtra("CONTESTID", contest.getContestID());
+         intent.putExtra("IMAGE1", contest.getThumbnail());
+         intent.putExtra("IMAGE2", contest.getThumbnailTwo());
+         intent.putExtra("CONTESTNAME", contest.getContestName());
+         startActivity(intent);
     }
 
 }
