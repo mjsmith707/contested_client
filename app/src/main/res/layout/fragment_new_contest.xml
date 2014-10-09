@@ -82,7 +82,8 @@
         android:layout_marginTop="37dp"
         android:textSize="15sp"
         android:layout_below="@+id/radioGroup"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
 
 
 </RelativeLayout>
