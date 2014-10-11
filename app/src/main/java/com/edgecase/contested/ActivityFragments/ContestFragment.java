@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.edgecase.contested.R;
 
@@ -18,10 +17,8 @@ import com.edgecase.contested.R;
  * A simple {@link Fragment} subclass.
  *
  */
-public class ContestFragment extends Fragment {
-    private TextView contestName ;
+public class ContestFragment extends Fragment {;
     private ImageButton entry;
-    private String name;
     private Bitmap image;
 
 
@@ -36,7 +33,6 @@ public class ContestFragment extends Fragment {
 
         /** Getting integer data of the key current_page from the bundle */
         mCurrentPage = data.getInt("current_page", 0);
-        name = data.getString("CONTESTNAME");
         image = setImage(data.getString("IMAGE"));
 
 
@@ -45,14 +41,9 @@ public class ContestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.contest_view_fragment, container,false);
-        contestName = (TextView) v.findViewById(R.id.contestName);
         entry = (ImageButton) v.findViewById(R.id.entry);
         setContent();
         return v;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Bitmap setImage (String image){
@@ -64,7 +55,6 @@ public class ContestFragment extends Fragment {
 
     public void setContent (){
 
-        contestName.setText(name);
         entry.setImageBitmap(image);
     }
 }
