@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+<EditText
+    android:layout_width="200dp"
+    android:layout_height="40dp"
+    android:ems="10"
+    android:id="@+id/username"
+    android:hint="@string/userName"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="15sp"
+    android:layout_marginTop="25sp"
+    android:textSize="15sp"
+    android:textColor="#000000"
+    />
+<Button
+    android:layout_width="170dp"
+    android:layout_height="40dp"
+    android:text="@string/Login"
+    android:id="@+id/login"
+    android:textSize="13sp"
+    android:textColor="#000000"
+    android:layout_alignTop="@+id/registerbtn"
+    android:layout_marginRight="15sp"
+    android:layout_alignParentRight="true"/>
+<Button
+    android:layout_width="220dp"
+    android:layout_height="40dp"
+    android:text="@string/Register"
+    android:id="@+id/registerbtn"
+    android:layout_below="@+id/pword"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="15sp"
+    android:textSize="13sp"
+    android:textColor="#000000"
+    android:layout_toLeftOf="@+id/login"/>
+<TextView
+    android:layout_width="fill_parent"
+    android:layout_height="56dp"
+    android:id="@+id/loginErrorMsg"
+    android:textColor="#000000"
+    android:layout_below="@+id/passres"
+    android:layout_alignParentLeft="true"/>
+<TextView
+    android:layout_width="200dp"
+    android:layout_height="40dp"
+    android:text="@string/userName"
+    android:id="@+id/textView2"
+    android:textSize="15sp"
+    android:textColor="#000000"
+    android:layout_toStartOf="@+id/username"
+    android:layout_alignLeft="@+id/registerbtn"
+    android:layout_alignStart="@+id/registerbtn"
+    android:layout_alignTop="@+id/username" />
+<EditText
+    android:layout_width="200dp"
+    android:layout_height="40dp"
+    android:inputType="textPassword"
+    android:ems="10"
+    android:id="@+id/pword"
+    android:hint="@string/Password"
+    android:layout_below="@+id/username"
+    android:layout_alignLeft="@+id/username"
+    android:textSize="15sp"
+    android:textColor="#000000"/>
+<TextView
+    android:layout_width="200dp"
+    android:layout_height="40dp"
+    android:text="@string/Password"
+    android:id="@+id/pworda"
+    android:layout_alignBottom="@+id/pword"
+    android:layout_alignRight="@+id/textView2"
+    android:layout_marginLeft="15sp"
+    android:textSize="15sp"
+    android:textColor="#000000"/>
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="40dp"
+    android:text="@string/forgotpass"
+    android:id="@+id/passres"
+    android:layout_below="@+id/login"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentLeft="true"
+    android:layout_marginRight="15sp"
+    android:layout_marginLeft="15sp"
+    android:textSize="13sp"
+    android:textColor="#000000"/>
+</RelativeLayout><!-- From: file:/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_login_main.xml -->
