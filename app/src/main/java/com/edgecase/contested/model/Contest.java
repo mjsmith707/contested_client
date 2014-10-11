@@ -1,8 +1,9 @@
 package com.edgecase.contested.model;
 
-import android.util.Log;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Contest {
+public class Contest implements Parcelable {
     private String contestName;
     private String userOne;
     private String userTwo;
@@ -12,7 +13,7 @@ public class Contest {
 
 
     public Contest() {
-        Log.w("Contest", "Empty constructor called");
+
     }
 
 
@@ -26,7 +27,35 @@ public class Contest {
     }
 
     public Contest (Contest contest){
+        this.contestName = contest.contestName;
+        this.thumbnailUrl = contest.thumbnailUrl;
+        this.thumbnailUrlTwo = contest.thumbnailUrlTwo;
+        this.userOne = contest.userOne;
+        this.userTwo = contest.userTwo;
+        this.contestID = contest.contestID;
+    }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(contestName);
+        out.writeString(thumbnailUrl);
+        out.writeString(thumbnailUrlTwo);
+        out.writeString(userOne);
+        out.writeString(userTwo);
+        out.writeString(contestID);
+    }
+
+    private Contest (Parcel in) {
+        contestName = in.readString();
+        thumbnailUrl = in.readString();
+        thumbnailUrlTwo = in.readString() ;
+        userOne = in.readString();
+        userTwo = in.readString();
+        contestID = in.readString();
     }
 
     public String getContestName() {
