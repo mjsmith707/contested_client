@@ -1,6 +1,7 @@
 package com.edgecase.contested.ActivityFragments;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -86,6 +88,13 @@ public void onActivityCreated(Bundle saved){
 else {
         image = setImage(encodedString);
         setContent();
+        entry.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                castVote(contestID, mCurrentPage);
+            }
+        });
     }
 }
 
@@ -213,5 +222,83 @@ else {
 
     public void setContent (){
         entry.setImageBitmap(image);
+    }
+
+    private void castVote(String contestID, int page) {
+        SharedPreferences prefs = this.getActivity().getSharedPreferences(MYPREFS, getActivity().MODE_PRIVATE);
+        pass = prefs.getString("Password", "not working");
+        uname = prefs.getString("Username", "not working");
+
+
+        JSONObject params = new JSONObject();
+        try {
+            Log.e("uname", uname);
+            params.put("username", uname);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            Log.e("pass", pass);
+            params.put("password", pass);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            params.put("requestid", "vote");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            Log.e("contestID", contestID);
+            params.put("reqparam1", contestID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            Log.e("entrant", Integer.toString(page));
+            params.put("reqparam2", Integer.toString(page));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+         /*   {"username":"msmith","password":"hello","requestid":"vote","reqparam1":"contestid","reqparam2":"slot"} */
+
+        JsonObjectRequest updateImageReq = new JsonObjectRequest(url, params,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+
+
+                        try {
+
+
+                            result = response.getString("RESULT");
+                            Log.e("result", result);
+                                Context context = getActivity();
+                                CharSequence text = "Vote Cast!";
+                            //TODO: at some point this should return the score
+                                int duration = Toast.LENGTH_SHORT;
+
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Log.e("error","Error: " + error.getMessage() );
+            }
+        });
+        // Adding request to request queue
+        Log.e("what", "what");
+        AppController.getInstance().addToRequestQueue(updateImageReq);
+
     }
 }
