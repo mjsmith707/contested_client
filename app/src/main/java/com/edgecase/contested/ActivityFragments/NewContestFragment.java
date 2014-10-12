@@ -4,10 +4,10 @@ package com.edgecase.contested.ActivityFragments;
  * Created by reubenromandy on 9/16/14.
  */
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -37,14 +38,18 @@ public class NewContestFragment extends Fragment {
     Button startContest;
     RadioGroup rGroup;
     EditText friend;
-    private String contestNameString;
-    private String contestOpponent = null;
+    private String contestNameString = "";
+    private String contestOpponent = "";
     private String uname;
     private String pass;
     private String type;
-    private String contestTypeID;
+    private String contestTypeID = "0";
     private String resultFromContest;
+    private Boolean privateCon = false;
     public static final String MYPREFS = "mySharedPreferences";
+
+    public NewContestFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,16 +65,9 @@ public class NewContestFragment extends Fragment {
         final String url = AppController.getInstance().getUrl();
         rGroup = (RadioGroup) getView().findViewById(R.id.radioGroup);
         contestName = (EditText) getView().findViewById(R.id.newContestName);
-        opponentUName = (EditText) getView().findViewById(R.id.friend);
         startContest = (Button) getView().findViewById(R.id.createContest);
         friend = (EditText) getView().findViewById(R.id.friend);
-
-
-
-
-        // This will get the radiogroup
-
-        // This will get the radiobutton in the radiogroup that is checked
+        opponentUName = (EditText) getView().findViewById(R.id.friend);
         startContest = (Button) getView().findViewById(R.id.createContest);
         SharedPreferences prefs = this.getActivity().getSharedPreferences(MYPREFS, getActivity().MODE_PRIVATE);
         pass = prefs.getString("Password", "not working");
@@ -86,19 +84,21 @@ public class NewContestFragment extends Fragment {
 
 
                 if (type.equals("Private Contest")) {
-
+                    privateCon = true;
                     friend.setVisibility(View.VISIBLE);
-                    contestTypeID = "Wait for name";
+                    Log.e("privateCon", privateCon.toString());
                 }
                 else if (type.equals("Public Contest")){
-
+                    privateCon = false;
                     friend.setVisibility(View.INVISIBLE);
                     contestTypeID = "-1";
+                    Log.e("publicCon", privateCon.toString());
                 }
                 else if (type.equals("Contest With Friends")){
-
+                    privateCon = false;
                     friend.setVisibility(View.INVISIBLE);
                     contestTypeID = "0";
+                    Log.e("friendCon", privateCon.toString());
                 }
 
 
@@ -114,68 +114,73 @@ public class NewContestFragment extends Fragment {
             public void onClick(View view) {
                 contestNameString = contestName.getText().toString();
                 contestOpponent = opponentUName.getText().toString();
-                if (contestTypeID.equals("Wait for name")){
+
+                if (privateCon) {
                     contestTypeID = friend.getText().toString();
                 }
-
-                JSONObject params = new JSONObject();
-                try {
-                    params.put("password", pass);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    params.put("username", uname);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    params.put("requestid", "createcontest");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    params.put("reqparam1", contestNameString);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    params.put("reqparam2", contestTypeID);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-                JsonObjectRequest contestCreateReq = new JsonObjectRequest(url, params,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.d(TAG, response.toString());
-
-
-                                try {
-
-
-                                    resultFromContest = response.getString("CONTESTKEY");
-
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        VolleyLog.d(TAG, "Error: " + error.getMessage());
+                if (contestTypeID.isEmpty() || contestNameString.isEmpty()) {
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "One or more fields are empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    JSONObject params = new JSONObject();
+                    try {
+                        params.put("password", pass);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                });
-                // Adding request to request queue
-                AppController.getInstance().addToRequestQueue(contestCreateReq);
+                    try {
+                        params.put("username", uname);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        params.put("requestid", "createcontest");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        params.put("reqparam1", contestNameString);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        params.put("reqparam2", contestTypeID);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    JsonObjectRequest contestCreateReq = new JsonObjectRequest(url, params,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    Log.d(TAG, response.toString());
+
+
+                                    try {
+
+
+                                        resultFromContest = response.getString("CONTESTKEY");
+
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            VolleyLog.d(TAG, "Error: " + error.getMessage());
+                        }
+                    });
+                    // Adding request to request queue
+                    AppController.getInstance().addToRequestQueue(contestCreateReq);
+
+                    Intent intent = new Intent(getActivity(), ContestViewPagerContainer.class);
+                    startActivity(intent);
 
             }
-            ContestFragment cf = new ContestFragment();
-           final FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-
+        }
         });
 
 
