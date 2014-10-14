@@ -4,6 +4,16 @@
     <dataSet config="main" >
         <source path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res" >
             <file
+                name="add_photo_placeholder"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/drawable-hdpi/add_photo_placeholder.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="appiconidea"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/drawable-hdpi/appiconidea.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
                 name="ic_launcher"
                 path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/drawable-hdpi/ic_launcher.png"
                 qualifiers="hdpi-v4"
@@ -24,10 +34,75 @@
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
             <file
+                name="activity_changepw"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_changepw.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_contest_view"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_contest_view.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_image_picker"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_image_picker.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_login_main"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_login_main.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="activity_main"
                 path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_main.xml"
                 qualifiers=""
                 type="layout" />
+            <file
+                name="activity_register"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_register.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="contest_list_row_layout"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/contest_list_row_layout.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="contest_view_fragment"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/contest_view_fragment.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="contest_view_pager"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/contest_view_pager.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="fragment_contest_list"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_contest_list.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="fragment_friends"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_friends.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="fragment_new_contest"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_new_contest.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="fragment_top_contests"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_top_contests.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="contest_view"
+                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/menu/contest_view.xml"
+                qualifiers=""
+                type="menu" />
             <file
                 name="main"
                 path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/menu/main.xml"
@@ -64,9 +139,9 @@
                 </string>
                 <string name="NewContestHeader" >New Contest
                 </string>
-                <string name="Login" >Login
-                </string>
                 <string name="Password" >Password
+                </string>
+                <string name="Login" >Login
                 </string>
                 <string name="Opponent" >choose opponent
                 </string>
@@ -96,76 +171,6 @@
                 <dimen name="activity_horizontal_margin" >64dp
                 </dimen>
             </file>
-            <file
-                name="contest_list_row_layout"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/contest_list_row_layout.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="contest_view_pager"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/contest_view_pager.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="contest_view_fragment"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/contest_view_fragment.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="fragment_contest_list"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_contest_list.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="fragment_friends"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_friends.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="fragment_new_contest"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_new_contest.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="fragment_top_contests"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_top_contests.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="activity_login_main"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_login_main.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="activity_changepw"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_changepw.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="activity_register"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_register.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="appiconidea"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/drawable-hdpi/appiconidea.png"
-                qualifiers="hdpi-v4"
-                type="drawable" />
-            <file
-                name="activity_contest_view"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_contest_view.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="contest_view"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/menu/contest_view.xml"
-                qualifiers=""
-                type="menu" />
-            <file
-                name="activity_image_picker"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_image_picker.xml"
-                qualifiers=""
-                type="layout" />
         </source>
         <source path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/build/generated/res/rs/debug" />
         <source path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/build/generated/res/generated/debug" />

@@ -158,8 +158,8 @@ else {
                 e.printStackTrace();
             }
             try {
-                Log.e("image", encodedString);
-                params.put("reqparam2", encodedString);
+                Log.e("image", "4");
+                params.put("reqparam2", "fdklj");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -169,7 +169,7 @@ else {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
+longInfo(params.toString());
          /*   JSON Format:
             {"username":"msmith","password":"hello","requestid":"updateimage","reqparam1":"int contestid",
                     "reqparam2":"base64image","reqparam3":"slot (1 or 2, left or right)"}*/
