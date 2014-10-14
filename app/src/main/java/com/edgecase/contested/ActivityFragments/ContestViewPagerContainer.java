@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.edgecase.contested.R;
@@ -31,7 +32,7 @@ public class ContestViewPagerContainer extends FragmentActivity{
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         contestID = intent.getStringExtra("CONTESTID");
         image1 = intent.getStringExtra("IMAGE1");
@@ -49,6 +50,19 @@ public class ContestViewPagerContainer extends FragmentActivity{
         pager.setAdapter(pagerAdapter);
 
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // This is called when the Home (Up) button is pressed in the action bar.
+                Intent upIntent = new Intent(this, MainActivity.class);
+                upIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                upIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(upIntent);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

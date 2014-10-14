@@ -49,6 +49,10 @@ public class ContestFragment extends Fragment {;
 
     Integer mCurrentPage;
 
+
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,10 @@ public class ContestFragment extends Fragment {;
         contestID = data.getString("CONTESTID");
         longInfo(encodedString);
     }
+
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

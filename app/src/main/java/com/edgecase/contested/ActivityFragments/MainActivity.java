@@ -17,7 +17,7 @@ import com.edgecase.contested.adapter.TabsPagerAdapter;
 import com.edgecase.contested.model.Contest;
 
 public class MainActivity extends FragmentActivity implements
-        ActionBar.TabListener, ContestListFragment.OnDetailView{
+        ActionBar.TabListener, ContestListFragment.OnDetailView, NewContestFragment.OnCreateContest{
 
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
@@ -90,6 +90,15 @@ public class MainActivity extends FragmentActivity implements
          intent.putExtra("IMAGE2", contest.getThumbnailTwo());
          intent.putExtra("CONTESTNAME", contest.getContestName());
          startActivity(intent);
+    }
+
+    public void onCreateNewContest( Contest contest){
+        Intent intent = new Intent(this, ContestViewPagerContainer.class);
+        intent.putExtra("CONTESTID", contest.getContestID());
+        intent.putExtra("IMAGE1", contest.getThumbnail());
+        intent.putExtra("IMAGE2", contest.getThumbnailTwo());
+        intent.putExtra("CONTESTNAME", contest.getContestName());
+        startActivity(intent);
     }
 
 }

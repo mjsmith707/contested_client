@@ -4,7 +4,8 @@ package com.edgecase.contested.ActivityFragments;
  * Created by reubenromandy on 9/16/14.
  */
 
-import android.content.Intent;
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.edgecase.contested.R;
 import com.edgecase.contested.app.AppController;
+import com.edgecase.contested.model.Contest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +40,8 @@ public class NewContestFragment extends Fragment {
     Button startContest;
     RadioGroup rGroup;
     EditText friend;
+    OnCreateContest mListener;
+    Context context;
     private String contestNameString = "";
     private String contestOpponent = "";
     private String uname;
@@ -57,6 +61,18 @@ public class NewContestFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_new_contest, container, false);
 
         return view;
+    }
+
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+        context = activity;
+        if (activity instanceof OnCreateContest)
+        {
+            mListener = (OnCreateContest) activity;
+        } else {
+            throw new  ClassCastException(activity.toString());
+        }
     }
 
     @Override
@@ -125,11 +141,13 @@ public class NewContestFragment extends Fragment {
                     JSONObject params = new JSONObject();
                     try {
                         params.put("password", pass);
+                        Log.e("pass", pass);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     try {
                         params.put("username", uname);
+                        Log.e("uname", uname);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -140,11 +158,13 @@ public class NewContestFragment extends Fragment {
                     }
                     try {
                         params.put("reqparam1", contestNameString);
+                        Log.e("contestname", contestNameString);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     try {
                         params.put("reqparam2", contestTypeID);
+                        Log.e("contestType", contestTypeID);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -161,7 +181,8 @@ public class NewContestFragment extends Fragment {
 
 
                                         resultFromContest = response.getString("CONTESTKEY");
-
+                                        Contest contest = new Contest(contestNameString, "", "",uname, contestOpponent, resultFromContest);
+                                        mListener.onCreateNewContest(contest);
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -171,13 +192,12 @@ public class NewContestFragment extends Fragment {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+
                         }
                     });
                     // Adding request to request queue
                     AppController.getInstance().addToRequestQueue(contestCreateReq);
-
-                    Intent intent = new Intent(getActivity(), ContestViewPagerContainer.class);
-                    startActivity(intent);
 
             }
         }
@@ -190,7 +210,9 @@ public class NewContestFragment extends Fragment {
         super.onDestroy();
     }
 
-
+    public interface OnCreateContest {
+        public void onCreateNewContest(Contest contest);
+    }
 
 }
 
