@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/reubenromandy/AndroidStudioProjects/Contested/app/build/intermediates/pre-dexed/debug/volley-6d9cacb463652abba9b43ad2b36ca9b3f027d235.jar"
+        jar="/Users/reubenromandy/AndroidStudioProjects/Contested/app/libs/volley.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c"/>
+    <item
+        dex="/Users/reubenromandy/AndroidStudioProjects/Contested/app/build/intermediates/pre-dexed/debug/android-support-v4-0b8674f458dec469ee1205ac39fd5c854f93bfe3.jar"
+        jar="/Users/reubenromandy/AndroidStudioProjects/Contested/app/libs/android-support-v4.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="efec67655f6db90757faa37201efcee2a9ec3507"/>
+
+</pre-dex-items>

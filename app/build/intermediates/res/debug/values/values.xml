@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- From: file:/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/values/colors.xml -->
+    <eat-comment />
+
+    <color name="darker_background_color">#ff007070</color>
+    <color name="default_accent_color">#ffff5555</color>
+    <color name="default_background_color">#ff008080</color>
+    <color name="lighter_background_color">#ff009090</color>
     <!-- From: file:/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/values/dimens.xml -->
     <eat-comment />
 
@@ -29,8 +36,36 @@
     <!-- From: file:/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="android:Theme.Material.Light">
+
+        <!-- Main theme colors -->
+        <!-- your app's branding color (for the app bar) -->
+        <item name="android:colorPrimary">@color/default_background_color</item>
+        <!-- darker variant of colorPrimary (for status bar, contextual app bars) -->
+        <item name="android:colorPrimaryDark">@color/darker_background_color</item>
+        <!-- theme UI controls like checkboxes and text fields -->
+        <item name="android:colorAccent">@color/default_accent_color</item>
+        <item name="android:actionBarTabBarStyle">@style/MyTheme.ActionBar.TabBar</item>
+        <item name="android:actionBarTabStyle">@style/MyTheme.ActionBar.TabView</item>
+        <item name="android:buttonStyle">@style/MyTheme.Button</item>
+        <item name="android:editTextStyle">@style/MyTheme.EditText</item>
+    </style>
+
+    <style name="MyTheme.ActionBar.TabBar" parent="android:style/Widget.Material.Light.ActionBar.TabBar">
+        <item name="android:background">@color/default_background_color</item>
+    </style>
+
+    <style name="MyTheme.ActionBar.TabView" parent="android:style/Widget.Material.ActionBar.TabView">
+        <item name="android:background">@color/lighter_background_color</item>
+    </style>
+
+    <style name="MyTheme.Button" parent="android:style/Widget.Material.Button">
+        <item name="android:background">@color/default_background_color</item>
+    </style>
+
+    <style name="MyTheme.EditText" parent="android:style/Widget.Material.EditText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">300dp</item>
     </style>
 
 </resources>
