@@ -222,8 +222,19 @@ longInfo(params.toString());
     }
 
     public Bitmap setImage(String image) {
-        byte[] decodeImage = Base64.decode(image, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(decodeImage, 0, decodeImage.length);
+        byte[] decodeImage = new byte[0];
+        try {
+            decodeImage = Base64.decode(image, Base64.DEFAULT);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Bitmap bm = null;
+        try {
+            bm = BitmapFactory.decodeByteArray(decodeImage, 0, decodeImage.length);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bm;
     }
 
 

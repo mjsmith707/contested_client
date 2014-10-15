@@ -132,7 +132,7 @@ public class NewContestFragment extends Fragment {
                 contestOpponent = opponentUName.getText().toString();
 
                 if (privateCon) {
-                    contestTypeID = friend.getText().toString();
+                    contestTypeID = contestOpponent;
                 }
                 if (contestTypeID.isEmpty() || contestNameString.isEmpty()) {
                     Toast.makeText(getActivity().getApplicationContext(),

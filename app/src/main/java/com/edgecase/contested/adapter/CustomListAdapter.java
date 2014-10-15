@@ -71,13 +71,37 @@ public class CustomListAdapter extends BaseAdapter {
         Contest c = contestItems.get(position);
 
         // thumbnail image
-        byte[] decodedString = Base64.decode(c.getThumbnail(), Base64.DEFAULT);
-        Bitmap imageFromDecodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        byte[] decodedString = new byte[0];
+        try {
+            decodedString = Base64.decode(c.getThumbnail(), Base64.DEFAULT);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Bitmap imageFromDecodedByte = null;
+        try {
+            if (decodedString != null) {
+                imageFromDecodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         thumbNail.setImageBitmap(imageFromDecodedByte);
 
         //thumbnail image two
-        byte[] decodedString2 = Base64.decode(c.getThumbnailTwo(), Base64.DEFAULT);
-        Bitmap imageFromDecodedByte2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+        byte[] decodedString2 = new byte[0];
+        try {
+            if (decodedString2 != null) {
+                decodedString2 = Base64.decode(c.getThumbnailTwo(), Base64.DEFAULT);
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        Bitmap imageFromDecodedByte2 = null;
+        try {
+            imageFromDecodedByte2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         thumbNailTwo.setImageBitmap(imageFromDecodedByte2);
 
         // contest name

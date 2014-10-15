@@ -51,7 +51,6 @@ public class LoginActivity extends Activity {
         inputPassword = (EditText) findViewById(R.id.pword);
         Btnregister = (Button) findViewById(R.id.registerbtn);
         btnLogin = (Button) findViewById(R.id.login);
-        passreset = (Button) findViewById(R.id.passres);
         loginErrorMsg = (TextView) findViewById(R.id.loginErrorMsg);
         /*passreset.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
