@@ -73,7 +73,9 @@ public class CustomListAdapter extends BaseAdapter {
         // thumbnail image
         byte[] decodedString = new byte[0];
         try {
-            decodedString = Base64.decode(c.getThumbnail(), Base64.DEFAULT);
+            if(c.getThumbnail().length() > 64) {
+                decodedString = Base64.decode(c.getThumbnail(), Base64.DEFAULT);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -90,7 +92,7 @@ public class CustomListAdapter extends BaseAdapter {
         //thumbnail image two
         byte[] decodedString2 = new byte[0];
         try {
-            if (decodedString2 != null) {
+            if (c.getThumbnailTwo().length() > 64) {
                 decodedString2 = Base64.decode(c.getThumbnailTwo(), Base64.DEFAULT);
             }
         } catch (IllegalArgumentException e) {

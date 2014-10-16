@@ -167,8 +167,8 @@ else {
                 e.printStackTrace();
             }
             try {
-                Log.e("image", "4");
-                params.put("reqparam2", "fdklj");
+                Log.e("image", encodedString);
+                params.put("reqparam2", encodedString);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
