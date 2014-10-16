@@ -295,15 +295,17 @@ longInfo(params.toString());
 
                             result = response.getString("RESULT");
                             Log.e("result", result);
-                                Context context = getActivity();
-                                CharSequence text = "Vote Cast!";
+                            Context context = getActivity();
+                            int duration = Toast.LENGTH_SHORT;
                             //TODO: at some point this should return the score
-                                int duration = Toast.LENGTH_SHORT;
-
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
-
-
+                            CharSequence text;
+                            if (result.equals("1000")) {
+                                text = "Vote Cast!";
+                            }else {
+                                text = "Unable to cast vote!";
+                            }
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
