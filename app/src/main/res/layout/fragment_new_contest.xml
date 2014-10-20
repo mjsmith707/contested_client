@@ -74,8 +74,7 @@
 
 
     <EditText
-        android:layout_width="300dp"
-        android:layout_height="40dp"
+        style="@style/MyTheme.EditText"
         android:textColor="#000000"
         android:id="@+id/friend"
         android:hint="@string/opponentName"

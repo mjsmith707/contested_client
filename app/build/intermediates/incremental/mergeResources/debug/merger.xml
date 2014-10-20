@@ -183,17 +183,6 @@
                 </style>
 
                 <style
-                    name="MyTheme.EditText"
-                    parent="android:style/Widget.Material.EditText" >
-                    <item name="android:layout_height">
-wrap_content
-                    </item>
-                    <item name="android:layout_width">
-300dp
-                    </item>
-                </style>
-
-                <style
                     name="AppTheme"
                     parent="android:Theme.Material.Light" >
 
@@ -221,6 +210,17 @@ wrap_content
                     </item>
                     <item name="android:editTextStyle">
 @style/MyTheme.EditText
+                    </item>
+                </style>
+
+                <style
+                    name="MyTheme.EditText"
+                    parent="android:style/Widget.Material.EditText" >
+                    <item name="android:layout_height">
+wrap_content
+                    </item>
+                    <item name="android:layout_width">
+300dp
                     </item>
                 </style>
             </file>

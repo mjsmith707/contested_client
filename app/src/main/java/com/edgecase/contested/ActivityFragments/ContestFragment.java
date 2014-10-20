@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -31,6 +32,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -115,9 +118,12 @@ else {
         else{
         Bundle extras = data.getExtras();
         String filename = extras.getString("filename");
-        Bitmap bm = BitmapFactory.decodeFile(filename);
-        image = bm;
-        InputStream inputStream = null;
+            try {
+                image = BitmapFactory.decodeFile(filename);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            InputStream inputStream = null;
         try {
             inputStream = new FileInputStream(filename);
         } catch (FileNotFoundException e) {
@@ -207,8 +213,8 @@ longInfo(params.toString());
                     Log.e("error", "ohno");
                 }
             });
+
             // Adding request to request queue
-            Log.e("what", "what");
             AppController.getInstance().addToRequestQueue(updateImageReq);
     }
     }
@@ -318,7 +324,6 @@ longInfo(params.toString());
             }
         });
         // Adding request to request queue
-        Log.e("what", "what");
         AppController.getInstance().addToRequestQueue(updateImageReq);
 
     }

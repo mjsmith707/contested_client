@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +37,7 @@ import java.util.List;
 
 
 
-public class ContestListFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class ContestListFragment extends Fragment implements AdapterView.OnItemClickListener,  SwipeRefreshLayout.OnRefreshListener {
     // Log tag
     private static final String TAG = ContestListFragment.class.getSimpleName();
 
@@ -45,12 +46,14 @@ public class ContestListFragment extends Fragment implements AdapterView.OnItemC
     private ProgressDialog pDialog;
     private List<Contest> contestList = new ArrayList<Contest>();
     private ListView listView;
+    private SwipeRefreshLayout swipeLayout;
     private CustomListAdapter adapter;
     OnDetailView mListener;
     Context context;
     private String uname;
     private String pass;
     private String contestID;
+    private View rootView;
     public static final String MYPREFS = "mySharedPreferences";
 
     @Override
@@ -70,9 +73,23 @@ public class ContestListFragment extends Fragment implements AdapterView.OnItemC
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_contest_list, container, false);
+        rootView = inflater.inflate(R.layout.fragment_contest_list, container, false);
+        getContests();
+        return rootView;
+    }
 
 
+
+    @Override
+    public void onRefresh(){
+        getContests();
+    }
+    public void getContests() {
+        contestList.clear();
+        swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+        swipeLayout.setOnRefreshListener(this);
+        swipeLayout.setColorSchemeResources(R.color.default_background_color, R.color.default_accent_color,
+                R.color.default_background_color, R.color.default_accent_color);
         listView = (ListView) rootView.findViewById(R.id.ContestListView);
         adapter = new CustomListAdapter(getActivity(), contestList);
         listView.setAdapter(adapter);
@@ -81,7 +98,7 @@ public class ContestListFragment extends Fragment implements AdapterView.OnItemC
         // Showing progress dialog before making http request
         pDialog.setMessage("Loading...");
         pDialog.show();
-
+        adapter.notifyDataSetChanged();
         // Creating volley request obj
         SharedPreferences prefs = this.getActivity().getSharedPreferences(MYPREFS, getActivity().MODE_PRIVATE);
         pass = prefs.getString("Password", "not working");
@@ -106,7 +123,6 @@ public class ContestListFragment extends Fragment implements AdapterView.OnItemC
         }
 
 
-
         JsonObjectRequest contestReq = new JsonObjectRequest(url, params,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -120,10 +136,8 @@ public class ContestListFragment extends Fragment implements AdapterView.OnItemC
                             result = response.getJSONArray("contests");
 
 
-
-
-                        // Parsing json
-                        for (int i = 0; i < result.length(); i++) {
+                            // Parsing json
+                            for (int i = 0; i < result.length(); i++) {
 
 
                                 JSONObject obj = result.getJSONObject(i);
@@ -139,26 +153,27 @@ public class ContestListFragment extends Fragment implements AdapterView.OnItemC
                                 contestList.add(contest);
 
                             }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
 
                         // notifying list adapter about data changes
                         // so that it renders the list view with updated data
                         adapter.notifyDataSetChanged();
+                        swipeLayout.setRefreshing(false);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 hidePDialog();
+                swipeLayout.setRefreshing(false);
             }
         });
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(contestReq);
-    return rootView;
 
     }
 
