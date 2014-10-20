@@ -72,7 +72,6 @@ public class ContestFragment extends Fragment {;
 
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.contest_view_fragment, container,false);
@@ -168,7 +167,7 @@ else {
             }
             try {
                 Log.e("image", "4");
-                params.put("reqparam2", "fdklj");
+                params.put("reqparam2", encodedString);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

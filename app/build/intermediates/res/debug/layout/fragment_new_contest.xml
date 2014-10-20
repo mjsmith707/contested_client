@@ -8,7 +8,7 @@
         android:layout_height="30sp"
         android:text="@string/NewContestHeader"
         android:textSize="24sp"
-        android:id="@+id/textView"
+        android:id="@+id/friendTextView"
         android:layout_gravity="center"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -23,7 +23,7 @@
         android:hint="Contest Name"
         android:layout_marginTop="37dp"
         android:textSize="15dp"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/friendTextView"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -45,8 +45,8 @@
         android:layout_alignLeft="@+id/newContestName"
         android:layout_alignStart="@+id/newContestName"
         android:layout_marginTop="41dp"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView"
+        android:layout_alignRight="@+id/friendTextView"
+        android:layout_alignEnd="@+id/friendTextView"
         android:id="@+id/radioGroup">
 
         <RadioButton
@@ -87,4 +87,4 @@
 
 
 </RelativeLayout>
-<!-- From: file:/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_new_contest.xml -->
+<!-- From: file:/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/fragment_new_contest.xml -->

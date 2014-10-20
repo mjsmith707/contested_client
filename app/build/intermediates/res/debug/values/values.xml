@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/msmith/Downloads/contestednew-master/app/src/main/res/values/colors.xml -->
     <eat-comment />
 
     <color name="darker_background_color">#ff007070</color>
     <color name="default_accent_color">#ffff5555</color>
     <color name="default_background_color">#ff008080</color>
     <color name="lighter_background_color">#ff009090</color>
-    <!-- From: file:/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/msmith/Downloads/contestednew-master/app/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/msmith/Downloads/contestednew-master/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="Login">Login</string>
@@ -33,7 +33,7 @@
     <string name="title_activity_contest_view">ContestView</string>
     <string name="userName">User Name</string>
     <string name="vs">vs.</string>
-    <!-- From: file:/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/msmith/Downloads/contestednew-master/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="AppTheme" parent="android:Theme.Material.Light">
