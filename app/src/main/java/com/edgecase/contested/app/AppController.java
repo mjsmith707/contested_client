@@ -20,7 +20,7 @@ public class AppController extends Application {
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-    private String url = "http://192.168.0.111:1234/";
+    private String url = "http://contested.grantkeller.org:1234/";
 
     private static AppController mInstance;
 
