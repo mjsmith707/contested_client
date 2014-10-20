@@ -2,114 +2,131 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res" >
+        <source path="/Users/msmith/Downloads/contestednew-master/app/src/main/res" >
             <file
                 name="add_photo_placeholder"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/drawable-hdpi/add_photo_placeholder.png"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/drawable-hdpi/add_photo_placeholder.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="appiconidea"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/drawable-hdpi/appiconidea.png"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/drawable-hdpi/appiconidea.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/drawable-hdpi/ic_launcher.png"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/drawable-hdpi/ic_launcher.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/drawable-mdpi/ic_launcher.png"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/drawable-mdpi/ic_launcher.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/drawable-xhdpi/ic_launcher.png"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/drawable-xhdpi/ic_launcher.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/drawable-xxhdpi/ic_launcher.png"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/drawable-xxhdpi/ic_launcher.png"
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
             <file
                 name="activity_changepw"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_changepw.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/activity_changepw.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_contest_view"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_contest_view.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/activity_contest_view.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_image_picker"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_image_picker.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/activity_image_picker.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_login_main"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_login_main.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/activity_login_main.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_main"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_main.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/activity_main.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_register"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/activity_register.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/activity_register.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="contest_list_row_layout"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/contest_list_row_layout.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/contest_list_row_layout.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="contest_view_fragment"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/contest_view_fragment.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/contest_view_fragment.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="contest_view_pager"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/contest_view_pager.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/contest_view_pager.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="fragment_contest_list"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_contest_list.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/fragment_contest_list.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="fragment_friends"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_friends.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/fragment_friends.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="fragment_new_contest"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_new_contest.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/fragment_new_contest.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="fragment_top_contests"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_top_contests.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/fragment_top_contests.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="friends_list_row_layout"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/friends_list_row_layout.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="contest_view"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/menu/contest_view.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/menu/contest_view.xml"
                 qualifiers=""
                 type="menu" />
             <file
                 name="main"
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/menu/main.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/menu/main.xml"
                 qualifiers=""
                 type="menu" />
             <file
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/values/dimens.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/values/colors.xml"
+                qualifiers="" >
+                <color name="lighter_background_color" >#ff009090
+                </color>
+                <color name="default_background_color" >#ff008080
+                </color>
+                <color name="default_accent_color" >#ffff5555
+                </color>
+                <color name="darker_background_color" >#ff007070
+                </color>
+            </file>
+            <file
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/values/dimens.xml"
                 qualifiers="" >
                 <dimen name="activity_horizontal_margin" >16dp
                 </dimen>
@@ -117,7 +134,7 @@
                 </dimen>
             </file>
             <file
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/values/strings.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/values/strings.xml"
                 qualifiers="" >
                 <string name="action_settings" >Settings
                 </string>
@@ -155,7 +172,7 @@
                 </string>
             </file>
             <file
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/values/styles.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/values/styles.xml"
                 qualifiers="" >
 
                 <style
@@ -225,29 +242,22 @@ wrap_content
                 </style>
             </file>
             <file
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/values-w820dp/dimens.xml"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/values-w820dp/dimens.xml"
                 qualifiers="w820dp-v13" >
                 <dimen name="activity_horizontal_margin" >64dp
                 </dimen>
             </file>
             <file
-                path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/values/colors.xml"
-                qualifiers="" >
-                <color name="lighter_background_color" >#ff009090
-                </color>
-                <color name="default_background_color" >#ff008080
-                </color>
-                <color name="default_accent_color" >#ffff5555
-                </color>
-                <color name="darker_background_color" >#ff007070
-                </color>
-            </file>
+                name="activity_add_friend"
+                path="/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/activity_add_friend.xml"
+                qualifiers=""
+                type="layout" />
         </source>
-        <source path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/build/generated/res/rs/debug" />
-        <source path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/build/generated/res/generated/debug" />
+        <source path="/Users/msmith/Downloads/contestednew-master/app/build/generated/res/rs/debug" />
+        <source path="/Users/msmith/Downloads/contestednew-master/app/build/generated/res/generated/debug" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/debug/res" />
+        <source path="/Users/msmith/Downloads/contestednew-master/app/src/debug/res" />
     </dataSet>
 
 </merger>

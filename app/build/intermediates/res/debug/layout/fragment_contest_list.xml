@@ -14,5 +14,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         android:dividerHeight="1dp"/>
 
 
+<<<<<<< HEAD
 </android.support.v4.widget.SwipeRefreshLayout>
 <!-- From: file:/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_contest_list.xml -->
+=======
+</RelativeLayout>
+<!-- From: file:/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/fragment_contest_list.xml -->
+>>>>>>> d2c5aa03e85d6646b8a73d7819efb427ee5b8136

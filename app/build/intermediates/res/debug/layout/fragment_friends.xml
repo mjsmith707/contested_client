@@ -3,15 +3,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ff8400" >
+    android:background="#ffffffff" >
 
-    <TextView android:layout_width="fill_parent"
+
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Design Games Screen"
-        android:textSize="20dp"
-        android:layout_centerInParent="true"/>
+        android:text="Add Friend"
+        android:id="@+id/addFriendButton"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:nestedScrollingEnabled="false" />
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/friendRequestsListView"
+        android:layout_centerHorizontal="true"
+        android:divider="#ff000000"
+        android:dividerHeight="1dp"
+        android:layout_below="@+id/requestsLabel"
+        android:layout_above="@+id/friendsLabel" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/friendsListView"
+        android:layout_centerHorizontal="true"
+        android:dividerHeight="1dp"
+        android:divider="#ff000000"
+        android:layout_above="@+id/addFriendButton"
+        android:layout_alignParentEnd="false"
+        android:layout_below="@+id/friendsLabel" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/requestsLabel"
+        android:text="Friend Requests"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:editable="false"
+        android:clickable="false" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/friendsLabel"
+        android:text="My Friends"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
-<!-- From: file:/Users/reubenromandy/AndroidStudioProjects/Contested/app/src/main/res/layout/fragment_friends.xml -->
+<!-- From: file:/Users/msmith/Downloads/contestednew-master/app/src/main/res/layout/fragment_friends.xml -->

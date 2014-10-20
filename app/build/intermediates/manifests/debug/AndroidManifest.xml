@@ -43,6 +43,10 @@
             android:name="com.edgecase.contested.ActivityFragments.ContestViewPagerContainer"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.edgecase.contested.ActivityFragments.AddFriendActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
