@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
@@ -8,45 +8,27 @@
         android:layout_height="30sp"
         android:text="@string/NewContestHeader"
         android:textSize="24sp"
-        android:id="@+id/friendTextView"
-        android:layout_gravity="center"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/newContestHeader"
         android:layout_marginTop="20sp"
+        android:layout_marginLeft="25sp"
         android:textColor="#000000"/>
 
     <EditText
-
         style="@style/MyTheme.EditText"
         android:textColor="#000000"
         android:id="@+id/newContestName"
         android:hint="Contest Name"
-        android:layout_marginTop="37dp"
-        android:textSize="15dp"
-        android:layout_below="@+id/friendTextView"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginRight="25sp"
+        android:layout_marginLeft="25sp"
+        android:layout_marginTop="25sp"
+        android:textSize="14sp"/>
 
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:textColor="#000000"
-        android:text="Create Contest"
-        android:id="@+id/createContest"
-        android:textSize="13dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/newContestName"
-        android:layout_alignStart="@+id/newContestName"
-        android:layout_marginBottom="43dp" />
 
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newContestName"
-        android:layout_alignLeft="@+id/newContestName"
-        android:layout_alignStart="@+id/newContestName"
-        android:layout_marginTop="41dp"
-        android:layout_alignRight="@+id/friendTextView"
-        android:layout_alignEnd="@+id/friendTextView"
+        android:layout_marginLeft="25sp"
+        android:layout_marginTop="35sp"
         android:id="@+id/radioGroup">
 
         <RadioButton
@@ -78,11 +60,22 @@
         android:textColor="#000000"
         android:id="@+id/friend"
         android:hint="@string/opponentName"
-        android:layout_marginTop="37dp"
-        android:textSize="15sp"
-        android:layout_below="@+id/radioGroup"
-        android:layout_centerHorizontal="true"
+        android:layout_marginRight="25sp"
+        android:layout_marginLeft="25sp"
+        android:layout_marginTop="25sp"
+        android:textSize="14sp"
         android:visibility="invisible"/>
 
+    <Button
+        style="@style/MyTheme.Button"
+        android:layout_height="40dp"
+        android:layout_width="fill_parent"
+        android:text="Create Contest"
+        android:id="@+id/createContest"
+        android:textSize="14sp"
+        android:layout_marginRight="25sp"
+        android:layout_marginLeft="25sp"
+        android:layout_marginTop="35sp"
+        />
 
-</RelativeLayout>
+</LinearLayout>

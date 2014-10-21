@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -32,8 +31,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -172,11 +169,9 @@ else {
                 e.printStackTrace();
             }
             try {
-<<<<<<< HEAD
-                Log.e("image", encodedString);
-=======
-                Log.e("image", "4");
->>>>>>> d2c5aa03e85d6646b8a73d7819efb427ee5b8136
+
+
+
                 params.put("reqparam2", encodedString);
             } catch (JSONException e) {
                 e.printStackTrace();

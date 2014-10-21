@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Material.Light">
+    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
         <!-- Main theme colors -->
         <!--   your app's branding color (for the app bar) -->
         <item name="android:colorPrimary">@color/default_background_color</item>
@@ -25,10 +25,12 @@
     </style>
     <style name="MyTheme.Button" parent="android:style/Widget.Material.Button">
         <item name="android:background">@color/default_background_color</item>
+        <item name="android:textColor">@color/highlight_text_color
+        </item>
     </style>
     <style name="MyTheme.EditText" parent="android:style/Widget.Material.EditText">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_width">fill_parent</item>
     </style>
 
 

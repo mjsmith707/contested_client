@@ -5,5 +5,6 @@
         <color name="darker_background_color">#ff007070</color>
         <color name="lighter_background_color">#ff009090</color>
         <color name="default_accent_color">#ffff5555</color>
+        <color name="highlight_text_color">#ffffffff</color>
 
 </resources>

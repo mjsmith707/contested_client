@@ -11,8 +11,8 @@
     <string name="Login">Login</string>
     <string name="forgotpass">Forgot Password</string>
     <string name="RegisterHeader">Register Contested</string>
-    <string name="fName">First Name</string>
-    <string name="userName">User Name</string>
+    <string name="fName">First</string>
+    <string name="userName">User</string>
     <string name="NewContestHeader">New Contest</string>
     <string name="Opponent">choose opponent</string>
     <string name="title_activity_contest_view">ContestView</string>
