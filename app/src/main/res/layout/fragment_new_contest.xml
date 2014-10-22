@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="30sp"
@@ -23,7 +24,6 @@
         android:layout_marginLeft="25sp"
         android:layout_marginTop="25sp"
         android:textSize="14sp"/>
-
 
     <RadioGroup
         android:layout_width="wrap_content"
@@ -54,7 +54,6 @@
             android:checked="false" />
 
     </RadioGroup>
-
 
     <EditText
         style="@style/MyTheme.EditText"

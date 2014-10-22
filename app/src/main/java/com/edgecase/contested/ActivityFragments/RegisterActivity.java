@@ -53,9 +53,9 @@ public class RegisterActivity extends Activity {
          * Defining all layout items
          **/
         inputFirstName = (EditText) findViewById(R.id.fname);
-        inputLastName = (EditText) findViewById(R.id.newContestName);
+        inputLastName = (EditText) findViewById(R.id.lastName);
         inputUsername = (EditText) findViewById(R.id.uname);
-        inputEmail = (EditText) findViewById(R.id.username);
+        inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.pword);
         btnRegister = (Button) findViewById(R.id.register);
         registerErrorMsg = (TextView) findViewById(R.id.register_error);
