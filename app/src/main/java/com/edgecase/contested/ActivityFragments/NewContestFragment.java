@@ -13,10 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -27,23 +30,29 @@ import com.edgecase.contested.R;
 import com.edgecase.contested.app.AppController;
 import com.edgecase.contested.model.Contest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewContestFragment extends Fragment {
     // Log tag
     private static final String TAG = NewContestFragment.class.getSimpleName();
 
     // Contests json url
-    EditText opponentUName;
     EditText contestName;
     Button startContest;
     RadioGroup rGroup;
-    EditText friend;
+    RadioButton rButton;
+    Spinner friend;
     OnCreateContest mListener;
     Context context;
+    List<String> friendsList;
     private String contestNameString = "";
     private String contestOpponent = "";
+    private String url;
     private String uname;
     private String pass;
     private String type;
@@ -78,16 +87,35 @@ public class NewContestFragment extends Fragment {
     @Override
         public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        final String url = AppController.getInstance().getUrl();
+        url = AppController.getInstance().getUrl();
         rGroup = (RadioGroup) getView().findViewById(R.id.radioGroup);
+        rButton = (RadioButton) getView().findViewById(R.id.radioButtonFriends);
         contestName = (EditText) getView().findViewById(R.id.newContestName);
         startContest = (Button) getView().findViewById(R.id.createContest);
-        friend = (EditText) getView().findViewById(R.id.friend);
-        opponentUName = (EditText) getView().findViewById(R.id.friend);
+        friend = (Spinner) getView().findViewById(R.id.friend);
         startContest = (Button) getView().findViewById(R.id.createContest);
         SharedPreferences prefs = this.getActivity().getSharedPreferences(MYPREFS, getActivity().MODE_PRIVATE);
         pass = prefs.getString("Password", "not working");
         uname = prefs.getString("Username", "not working");
+        friendsList = new ArrayList<String>();
+        updateFriendsList();
+        friendsList.add(0,"Pick an opponent");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(),
+                android.R.layout.simple_spinner_item, friendsList);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        friend.setAdapter(dataAdapter);
+
+
+        friend.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
 
 
         rGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
@@ -116,8 +144,6 @@ public class NewContestFragment extends Fragment {
                     contestTypeID = "0";
                     Log.e("friendCon", privateCon.toString());
                 }
-
-
             }
         });
 
@@ -129,7 +155,8 @@ public class NewContestFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 contestNameString = contestName.getText().toString();
-                contestOpponent = opponentUName.getText().toString();
+                contestOpponent = friend.getSelectedItem().toString();
+                Log.e("friend", contestOpponent);
 
                 if (privateCon) {
                     contestTypeID = contestOpponent;
@@ -178,8 +205,6 @@ public class NewContestFragment extends Fragment {
 
 
                                     try {
-
-
                                         resultFromContest = response.getString("CONTESTKEY");
                                         Contest contest = new Contest(contestNameString, "", "",uname, contestOpponent, resultFromContest);
                                         mListener.onCreateNewContest(contest);
@@ -193,18 +218,72 @@ public class NewContestFragment extends Fragment {
                         public void onErrorResponse(VolleyError error) {
                             VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-
                         }
                     });
                     // Adding request to request queue
                     AppController.getInstance().addToRequestQueue(contestCreateReq);
 
+                    contestName.setText("");
+                    friend.setSelection(0);
+                    rButton.setChecked(true);
             }
         }
         });
 
-
 }
+
+    private void updateFriendsList() {
+        // Creating volley request obj
+        friendsList.clear();
+
+        JSONObject params2 = new JSONObject();
+        try {
+            params2.put("password", pass);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            params2.put("requestid", "getmyfriends");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            params2.put("username", uname);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest friendsListReq = new JsonObjectRequest(url, params2,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+
+                        try {
+                            JSONArray result = new JSONArray();
+                            result = response.getJSONArray("friends");
+
+                            // Parsing json
+                            for (int i = 0; i < result.length(); i++) {
+                                JSONObject obj = result.getJSONObject(i);
+                                String friend = (obj.getString("name"));
+                                friendsList.add(friend);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        });
+
+        AppController.getInstance().addToRequestQueue(friendsListReq);
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
