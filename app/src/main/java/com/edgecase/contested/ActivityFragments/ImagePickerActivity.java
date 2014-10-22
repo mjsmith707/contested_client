@@ -99,12 +99,12 @@ public class ImagePickerActivity extends Activity {
             ImageView imageView;
             if (convertView == null) {  // if it's not recycled, initialize some attributes
                 imageView = new ImageView(mContext);
-                imagecursor.moveToPosition(position);
                 imageView.setLayoutParams(new GridView.LayoutParams(310, 310));
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                //imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             } else {
                 imageView = (ImageView) convertView;
             }
+            imagecursor.moveToPosition(position);
 
             Bitmap bm = decodeSampledBitmapFromUri(imagecursor.getString(image_column_index), 310, 310);
 
