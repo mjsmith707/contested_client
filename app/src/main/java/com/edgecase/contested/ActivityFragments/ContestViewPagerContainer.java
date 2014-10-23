@@ -35,8 +35,8 @@ public class ContestViewPagerContainer extends FragmentActivity{
         getActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         contestID = intent.getStringExtra("CONTESTID");
-        image1 = intent.getStringExtra("IMAGE1");
-        image2 = intent.getStringExtra("IMAGE2");
+        image1 = intent.getStringExtra("IMAGE1File");
+        image2 = intent.getStringExtra("IMAGE2File");
         contestName = intent.getStringExtra("CONTESTNAME");
         setContentView(R.layout.activity_contest_view);
         contestname = (TextView) findViewById(R.id.contestName);

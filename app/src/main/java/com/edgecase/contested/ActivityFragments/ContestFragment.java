@@ -1,6 +1,7 @@
 package com.edgecase.contested.ActivityFragments;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -27,7 +29,13 @@ import com.edgecase.contested.library.DecodeImageResize;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,17 +45,25 @@ public class ContestFragment extends Fragment {;
     private static final String TAG = ContestFragment.class.getSimpleName();
     private ImageButton entry;
     private Bitmap image;
-    private String encodedString;
+    Context context;
+    private String encodedString = "";
     private String uname;
     private String pass;
     private String contestID;
     private String result;
+    private FileInputStream fis;
     private String url = AppController.getInstance().getUrl();
     public static final String MYPREFS = "mySharedPreferences";
 
 
     Integer mCurrentPage;
+    @Override
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+        context = activity;
 
+    }
 
 
 
@@ -58,12 +74,46 @@ public class ContestFragment extends Fragment {;
 
         /** Getting the arguments to the Bundle object */
         Bundle data = getArguments();
+        String imageFileName = data.getString("IMAGE");
+    if(imageFileName != null) {
+        BufferedReader bufferedReader = null;
+        try {
+            if (imageFileName.equals("image1FileName")) {
+                bufferedReader = new BufferedReader(new FileReader(new
+                        File(context.getFilesDir() + File.separator + "image1FileName")));
+            } else {
+                bufferedReader = new BufferedReader(new FileReader(new
+                        File(context.getFilesDir() + File.separator + "image2FileName")));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
+        StringBuilder builder = new StringBuilder("");
+
+        if (bufferedReader != null) {
+            try {
+                while ((encodedString = bufferedReader.readLine()) != null) {
+                    builder.append(encodedString);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        encodedString = builder.toString();
+        Log.e("Output", builder.toString());
+        if (bufferedReader != null) {
+            try {
+                bufferedReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
         /** Getting integer data of the key current_page from the bundle */
         mCurrentPage = data.getInt("current_page", 0);
-        encodedString = data.getString("IMAGE");
         contestID = data.getString("CONTESTID");
-        longInfo(encodedString);
     }
 
 
@@ -114,7 +164,7 @@ public class ContestFragment extends Fragment {;
             try {
                 DecodeImageResize resizedImage = new DecodeImageResize();
 
-                image = resizedImage.decodeSampledBitmapFromUri(filename, 800, 800);
+                image = resizedImage.decodeSampledBitmapFromUri(filename, 500, 500);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -234,6 +284,7 @@ public class ContestFragment extends Fragment {;
 
 
     public void setContent (){
+        entry.setScaleType(ImageView.ScaleType.FIT_CENTER);
         entry.setImageBitmap(image);
     }
 
