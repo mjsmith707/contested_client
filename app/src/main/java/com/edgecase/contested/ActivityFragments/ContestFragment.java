@@ -22,15 +22,12 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.edgecase.contested.R;
 import com.edgecase.contested.app.AppController;
+import com.edgecase.contested.library.DecodeImageResize;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,32 +75,32 @@ public class ContestFragment extends Fragment {;
         return v;
     }
 
-@Override
-public void onActivityCreated(Bundle saved){
-    super.onActivityCreated(saved);
-    entry = (ImageButton) getView().findViewById(R.id.entry);
-    if(encodedString.length() < 25) {
-        entry.setImageResource(R.drawable.add_photo_placeholder);
-        entry.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),
-                        ImagePickerActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-    }
-else {
-        image = setImage(encodedString);
-        setContent();
-        entry.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onActivityCreated(Bundle saved){
+        super.onActivityCreated(saved);
+        entry = (ImageButton) getView().findViewById(R.id.entry);
+        if(encodedString.length() < 25) {
+            entry.setImageResource(R.drawable.add_photo_placeholder);
+            entry.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(),
+                            ImagePickerActivity.class);
+                    startActivityForResult(intent, 0);
+                }
+            });
+        }
+        else {
+            image = setImage(encodedString);
+            setContent();
+            entry.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                castVote(contestID, mCurrentPage);
-            }
-        });
+                @Override
+                public void onClick(View view) {
+                    castVote(contestID, mCurrentPage);
+                }
+            });
+        }
     }
-}
 
 
     @Override
@@ -112,39 +109,32 @@ else {
         if (resultCode == getActivity().RESULT_CANCELED ) {
         }
         else{
-        Bundle extras = data.getExtras();
-        String filename = extras.getString("filename");
+            Bundle extras = data.getExtras();
+            String filename = extras.getString("filename");
             try {
-                image = BitmapFactory.decodeFile(filename);
+                DecodeImageResize resizedImage = new DecodeImageResize();
+
+                image = resizedImage.decodeSampledBitmapFromUri(filename, 800, 800);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            InputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream(filename);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        byte[] bytes;
-        byte[] buffer = new byte[8192];
-        int bytesRead;
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        try {
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                output.write(buffer, 0, bytesRead);
+            byte [] bytes;
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.PNG, 80, output);
+            bytes = output.toByteArray();
+            String encodedString = null;
+            try {
+                encodedString = Base64.encodeToString(bytes, Base64.DEFAULT);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        bytes = output.toByteArray();
-        String encodedString = Base64.encodeToString(bytes, Base64.DEFAULT);
             setContent();
             SharedPreferences prefs = this.getActivity().getSharedPreferences(MYPREFS, getActivity().MODE_PRIVATE);
             pass = prefs.getString("Password", "not working");
             uname = prefs.getString("Username", "not working");
 
 
-           JSONObject params = new JSONObject();
+            JSONObject params = new JSONObject();
             try {
                 Log.e("uname", uname);
                 params.put("username", uname);
@@ -182,7 +172,7 @@ else {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-longInfo(params.toString());
+            longInfo(params.toString());
          /*   JSON Format:
             {"username":"msmith","password":"hello","requestid":"updateimage","reqparam1":"int contestid",
                     "reqparam2":"base64image","reqparam3":"slot (1 or 2, left or right)"}*/
@@ -214,7 +204,7 @@ longInfo(params.toString());
 
             // Adding request to request queue
             AppController.getInstance().addToRequestQueue(updateImageReq);
-    }
+        }
     }
 
     public static void longInfo(String str) {
