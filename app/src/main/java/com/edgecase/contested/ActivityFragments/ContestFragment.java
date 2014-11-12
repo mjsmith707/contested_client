@@ -45,6 +45,7 @@ public class ContestFragment extends Fragment {;
     private static final String TAG = ContestFragment.class.getSimpleName();
     private ImageButton entry;
     private Bitmap image;
+    private Bitmap thumbnail;
     Context context;
     private String encodedString = "";
     private String uname;
@@ -160,6 +161,7 @@ public class ContestFragment extends Fragment {;
         }
         else{
             Bundle extras = data.getExtras();
+            //doing main image
             String filename = extras.getString("filename");
             try {
                 DecodeImageResize resizedImage = new DecodeImageResize();
@@ -179,6 +181,23 @@ public class ContestFragment extends Fragment {;
                 e.printStackTrace();
             }
             setContent();
+            //thumbnail
+            try {
+                DecodeImageResize resizedImage = new DecodeImageResize();
+
+                thumbnail = resizedImage.decodeSampledBitmapFromUri(filename, 100, 100);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            ByteArrayOutputStream outputThumbnail = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 80, outputThumbnail);
+            bytes = outputThumbnail.toByteArray();
+            String encodedStringThumbnail = null;
+            try {
+                encodedStringThumbnail = Base64.encodeToString(bytes, Base64.DEFAULT);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             SharedPreferences prefs = this.getActivity().getSharedPreferences(MYPREFS, getActivity().MODE_PRIVATE);
             pass = prefs.getString("Password", "not working");
             uname = prefs.getString("Username", "not working");
@@ -209,9 +228,6 @@ public class ContestFragment extends Fragment {;
                 e.printStackTrace();
             }
             try {
-
-
-
                 params.put("reqparam2", encodedString);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -219,6 +235,11 @@ public class ContestFragment extends Fragment {;
             try {
                 Log.e("page", mCurrentPage.toString());
                 params.put("reqparam3", mCurrentPage.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                params.put("reqparam4", encodedStringThumbnail);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
