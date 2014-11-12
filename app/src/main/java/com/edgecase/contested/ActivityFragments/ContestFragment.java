@@ -353,7 +353,7 @@ public class ContestFragment extends Fragment {;
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
+                        Log.d("scoreResponse", response.toString());
 
 
                         try {
@@ -363,7 +363,6 @@ public class ContestFragment extends Fragment {;
                             Log.e("result", result);
                             Context context = getActivity();
                             int duration = Toast.LENGTH_SHORT;
-                            //TODO: at some point this should return the score
                             CharSequence text;
                             if (result.equals("1000")) {
                                 text = "Vote Cast!";
@@ -372,6 +371,12 @@ public class ContestFragment extends Fragment {;
                             }
                             Toast toast = Toast.makeText(context, text, duration);
                             toast.show();
+                            JSONObject scores = response.getJSONObject("Scores");
+                            String score1 = scores.getString("user1");
+                            String score2 = scores.getString("user2");
+                            text = "Score: " + score1 + " to " + score2;
+                            Toast toast2 = Toast.makeText(context, text, duration);
+                            toast2.show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
