@@ -2,14 +2,14 @@
 <pre-dex-items>
 
     <item
-        dex="/Users/reubenromandy/AndroidStudioProjects/Contested/app/build/intermediates/pre-dexed/debug/volley-6d9cacb463652abba9b43ad2b36ca9b3f027d235.jar"
-        jar="/Users/reubenromandy/AndroidStudioProjects/Contested/app/libs/volley.jar"
+        dex="C:\Users\Grant\AndriodProjects\contestednew\app\build\intermediates\pre-dexed\debug\volley-86490c1ad83d78ed5ce155f59f19955c32aede85.jar"
+        jar="C:\Users\Grant\AndriodProjects\contestednew\app\libs\volley.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c"/>
     <item
-        dex="/Users/reubenromandy/AndroidStudioProjects/Contested/app/build/intermediates/pre-dexed/debug/android-support-v4-0b8674f458dec469ee1205ac39fd5c854f93bfe3.jar"
-        jar="/Users/reubenromandy/AndroidStudioProjects/Contested/app/libs/android-support-v4.jar"
+        dex="C:\Users\Grant\AndriodProjects\contestednew\app\build\intermediates\pre-dexed\debug\android-support-v4-6130b4ab04be7c4b79e4b30786aa8fe2c21aab0c.jar"
+        jar="C:\Users\Grant\AndriodProjects\contestednew\app\libs\android-support-v4.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="efec67655f6db90757faa37201efcee2a9ec3507"/>

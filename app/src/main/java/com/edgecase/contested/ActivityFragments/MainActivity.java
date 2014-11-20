@@ -20,7 +20,7 @@ import com.edgecase.contested.model.Contest;
 import java.io.FileOutputStream;
 
 public class MainActivity extends FragmentActivity implements
-        ActionBar.TabListener, ContestListFragment.OnDetailView, NewContestFragment.OnCreateContest{
+        ActionBar.TabListener, ContestListFragment.OnDetailView, NewContestFragment.OnCreateContest, TopContestsFragment.OnDetailView{
 
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
