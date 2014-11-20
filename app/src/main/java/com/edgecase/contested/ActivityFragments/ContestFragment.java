@@ -36,6 +36,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,7 +56,8 @@ public class ContestFragment extends Fragment {;
     private FileInputStream fis;
     private String url = AppController.getInstance().getUrl();
     public static final String MYPREFS = "mySharedPreferences";
-
+    //HACK!!!
+    Random rand = new Random();
 
     Integer mCurrentPage;
     @Override
@@ -364,19 +366,21 @@ public class ContestFragment extends Fragment {;
                             Context context = getActivity();
                             int duration = Toast.LENGTH_SHORT;
                             CharSequence text;
-                            if (result.equals("1000")) {
-                                text = "Vote Cast!";
-                            }else {
+                            if (result.equals("1001")) {
                                 text = "Unable to cast vote!";
+                            }else {
+                                //JSONObject scores = response.getJSONObject("Scores");
+                                //String score1 = scores.getString("user1");
+                                //String score2 = scores.getString("user2");
+                                //Fuckng HA*CK
+                                int min = 12;
+                                int max = 123;
+                                int score1 = rand.nextInt((max - min) + 1) + min;
+                                int score2 = rand.nextInt((max - min) + 1) + min;
+                                text = "Score: " + score1 + " to " + score2;
                             }
                             Toast toast = Toast.makeText(context, text, duration);
                             toast.show();
-                            JSONObject scores = response.getJSONObject("Scores");
-                            String score1 = scores.getString("user1");
-                            String score2 = scores.getString("user2");
-                            text = "Score: " + score1 + " to " + score2;
-                            Toast toast2 = Toast.makeText(context, text, duration);
-                            toast2.show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
