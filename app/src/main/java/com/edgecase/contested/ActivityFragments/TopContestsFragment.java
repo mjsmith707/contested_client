@@ -7,6 +7,7 @@ package com.edgecase.contested.ActivityFragments;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -100,21 +101,23 @@ public class TopContestsFragment extends Fragment implements AdapterView.OnItemC
         pDialog.show();
         adapter.notifyDataSetChanged();
         // Creating volley request obj
-
+        SharedPreferences prefs = this.getActivity().getSharedPreferences(MYPREFS, getActivity().MODE_PRIVATE);
+        pass = prefs.getString("Password", "not working");
+        uname = prefs.getString("Username", "not working");
 
             JSONObject params = new JSONObject();
             try {
-                params.put("password", "jujitsu");
+                params.put("password", pass);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             try {
-                params.put("requestid", "getmycontests");
+                params.put("requestid", "gettopcontests");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             try {
-                params.put("username", "tryhard");
+                params.put("username", uname);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
